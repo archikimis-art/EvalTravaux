@@ -4,9 +4,9 @@
 
 | Champ | Valeur |
 |-------|--------|
-| **Root Directory** | `apps/web` |
-| **Build Command** | `npm install && npm run build` |
-| **Start Command** | `npm run start` |
+| **Root Directory** | *(vide – racine du dépôt)* |
+| **Build Command** | `npm install --include=dev && npm run build:web` |
+| **Start Command** | `npm run start:web` |
 
 ---
 
