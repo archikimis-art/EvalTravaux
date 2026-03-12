@@ -1,0 +1,44 @@
+# Blueprint EvalTravaux - Déploiement sur Render
+# https://docs.render.com/blueprint-spec
+#
+# Utilise la base evaltravaux existante. Collez l'Internal Database URL
+# dans le Dashboard Render lors de la création (variable DATABASE_URL).
+
+services:
+  # API NestJS
+  - type: web
+    runtime: node
+    name: evaltravaux-api
+    region: frankfurt
+    plan: free
+    rootDir: services/api
+    branch: main
+    buildCommand: npm install && npx prisma generate && npm run build && npx prisma migrate deploy && npm run prisma:seed
+    startCommand: npm run start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        value: https://evaltravaux.onrender.com
+      - key: NODE_ENV
+        value: production
+      - key: STRIPE_SECRET_KEY
+        sync: false
+
+  # Frontend Next.js
+  - type: web
+    runtime: node
+    name: evaltravaux
+    region: frankfurt
+    plan: free
+    rootDir: apps/web
+    branch: main
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://evaltravaux-api.onrender.com
+      - key: NEXT_PUBLIC_PUBLIC_CUSTOMER_ID
+        value: public-customer-evaltravaux

@@ -1,0 +1,285 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Seed : npm run prisma:seed (crée le customer public pour les leads anonymes)
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  role      UserRole
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  professional Professional?
+  customer     Customer?
+  auditLogs    AuditLog[]
+  consents     Consent[]
+}
+
+model Professional {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  companyName     String
+  trade           String   // métier principal (plombier, électricien...)
+  city            String
+  latitude        Float?
+  longitude       Float?
+  averageRating   Float?   @default(0)
+  ratingCount     Int      @default(0)
+  documentsValid  Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user                  User               @relation(fields: [userId], references: [id])
+  leads                 Lead[]             @relation("LeadProfessionals")
+  leadPurchases         LeadPurchase[]
+  credits               Credit[]
+  subscriptions         Subscription[]
+  messages              Message[]          @relation("ProfessionalMessages")
+  reviews               Review[]
+  notifications         Notification[]
+  invoices              Invoice[]
+  auditLogs             AuditLog[]
+  professionalDocuments ProfessionalDocument[]
+  ratings               Rating[]
+  stripePayments        StripePayment[]
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  firstName String?
+  lastName  String?
+  city      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user    User   @relation(fields: [userId], references: [id])
+  leads   Lead[]
+  reviews Review[]
+}
+
+model Lead {
+  id              String           @id @default(cuid())
+  customerId      String
+  title           String
+  description     String
+  trade           String           // métier demandé
+  city            String
+  contactEmail    String?
+  contactPhone    String?
+  surface         Int?
+  budgetMin       Int?
+  budgetMax       Int?
+  size            LeadSize         // small / medium / large
+  status          LeadStatus       @default(NEW)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  customer        Customer         @relation(fields: [customerId], references: [id])
+  professionals   Professional[]   @relation("LeadProfessionals")
+  leadPurchases   LeadPurchase[]
+  messages        Message[]        @relation("LeadMessages")
+  reviews         Review[]
+  aiOutputs       AiOutput[]
+  ratings         Rating[]
+}
+
+model LeadPurchase {
+  id             String      @id @default(cuid())
+  leadId         String
+  professionalId String
+  creditsUsed    Int
+  createdAt      DateTime    @default(now())
+
+  lead         Lead         @relation(fields: [leadId], references: [id])
+  professional Professional @relation(fields: [professionalId], references: [id])
+}
+
+model Credit {
+  id             String      @id @default(cuid())
+  professionalId String
+  balance        Int         @default(0)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  professional   Professional   @relation(fields: [professionalId], references: [id])
+  transactions   Transaction[]
+}
+
+model StripePayment {
+  id             String      @id @default(cuid())
+  sessionId      String      @unique
+  professionalId String
+  packSize       Int
+  createdAt      DateTime    @default(now())
+
+  professional Professional @relation(fields: [professionalId], references: [id])
+}
+
+model Subscription {
+  id             String      @id @default(cuid())
+  professionalId String
+  plan           String
+  status         String
+  startedAt      DateTime
+  endsAt         DateTime?
+
+  professional Professional @relation(fields: [professionalId], references: [id])
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  creditId  String?
+  amount    Int
+  type      String   // achat crédits, consommation, remboursement...
+  createdAt DateTime @default(now())
+
+  credit Credit? @relation(fields: [creditId], references: [id])
+}
+
+model Message {
+  id             String      @id @default(cuid())
+  leadId         String
+  professionalId String
+  fromCustomer   Boolean
+  content        String
+  createdAt      DateTime    @default(now())
+
+  lead         Lead         @relation("LeadMessages", fields: [leadId], references: [id])
+  professional Professional @relation("ProfessionalMessages", fields: [professionalId], references: [id])
+}
+
+model Review {
+  id             String      @id @default(cuid())
+  leadId         String
+  professionalId String
+  customerId     String
+  rating         Int
+  comment        String?
+  createdAt      DateTime    @default(now())
+
+  lead         Lead         @relation(fields: [leadId], references: [id])
+  professional Professional @relation(fields: [professionalId], references: [id])
+  customer     Customer     @relation(fields: [customerId], references: [id])
+}
+
+model Notification {
+  id             String      @id @default(cuid())
+  professionalId String
+  type           String
+  payload        Json
+  readAt         DateTime?
+  createdAt      DateTime    @default(now())
+
+  professional Professional @relation(fields: [professionalId], references: [id])
+}
+
+model Invoice {
+  id             String      @id @default(cuid())
+  professionalId String
+  amount         Int
+  currency       String      @default("EUR")
+  status         String
+  createdAt      DateTime    @default(now())
+
+  professional Professional @relation(fields: [professionalId], references: [id])
+}
+
+model AuditLog {
+  id             String      @id @default(cuid())
+  professionalId String?
+  userId         String?
+  action         String
+  metadata       Json?
+  createdAt      DateTime    @default(now())
+
+  professional Professional? @relation(fields: [professionalId], references: [id])
+  user         User?         @relation(fields: [userId], references: [id])
+}
+
+model AiOutput {
+  id        String   @id @default(cuid())
+  leadId    String
+  content   Json
+  createdAt DateTime @default(now())
+
+  lead Lead @relation(fields: [leadId], references: [id])
+}
+
+model Consent {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String   // email_marketing, tracking, etc.
+  granted   Boolean
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Rating {
+  id             String      @id @default(cuid())
+  professionalId String
+  leadId         String
+  score          Int
+  comment        String?
+  createdAt      DateTime    @default(now())
+
+  professional Professional @relation(fields: [professionalId], references: [id])
+  lead         Lead         @relation(fields: [leadId], references: [id])
+}
+
+model ProfessionalDocument {
+  id             String                     @id @default(cuid())
+  professionalId String
+  type           ProfessionalDocumentType
+  url            String
+  expiresAt      DateTime?
+  status         DocumentStatus             @default(PENDING)
+  createdAt      DateTime                   @default(now())
+  updatedAt      DateTime                   @updatedAt
+
+  professional Professional @relation(fields: [professionalId], references: [id])
+
+  @@unique([professionalId, type], name: "professionalId_type")
+}
+
+enum UserRole {
+  CUSTOMER
+  PROFESSIONAL
+  ADMIN
+}
+
+enum LeadSize {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum LeadStatus {
+  NEW
+  ASSIGNED
+  IN_PROGRESS
+  COMPLETED
+  CLOSED
+}
+
+enum ProfessionalDocumentType {
+  INSURANCE
+  KBIS
+  RGE
+}
+
+enum DocumentStatus {
+  PENDING
+  VALID
+  EXPIRED
+}
+
