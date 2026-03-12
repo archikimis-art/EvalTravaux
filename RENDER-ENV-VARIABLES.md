@@ -2,13 +2,11 @@
 
 ## Service evaltravaux (Frontend) – Paramètres de build
 
-Si le build échoue avec exit 127, vérifiez ces paramètres dans **Settings** :
-
 | Champ | Valeur |
 |-------|--------|
-| **Root Directory** | *(vide – laisser vide pour utiliser la racine)* |
-| **Build Command** | `npm install && npm run build:web` |
-| **Start Command** | `npm run start:web` |
+| **Root Directory** | `apps/web` |
+| **Build Command** | `npm install && npm run build` |
+| **Start Command** | `npm run start` |
 
 ---
 
