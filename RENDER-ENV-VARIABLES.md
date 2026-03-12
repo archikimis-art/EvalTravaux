@@ -1,4 +1,18 @@
-# Variables d'environnement Render – Copier-coller
+# Configuration Render – EvalTravaux
+
+## Service evaltravaux (Frontend) – Paramètres de build
+
+Si le build échoue avec exit 127, vérifiez ces paramètres dans **Settings** :
+
+| Champ | Valeur |
+|-------|--------|
+| **Root Directory** | *(vide – laisser vide pour utiliser la racine)* |
+| **Build Command** | `npm install && npm run build:web` |
+| **Start Command** | `npm run start:web` |
+
+---
+
+## Variables d'environnement – Copier-coller
 
 Ouvrez ce fichier et copiez chaque paire **Key** / **Value** dans le Dashboard Render.
 

@@ -27,16 +27,15 @@ services:
       - key: STRIPE_SECRET_KEY
         sync: false
 
-  # Frontend Next.js
+  # Frontend Next.js (build depuis la racine du monorepo)
   - type: web
     runtime: node
     name: evaltravaux
     region: frankfurt
     plan: free
-    rootDir: apps/web
     branch: main
-    buildCommand: npm install && npm run build
-    startCommand: npm run start
+    buildCommand: npm install && npm run build:web
+    startCommand: npm run start:web
     envVars:
       - key: NEXT_PUBLIC_API_URL
         value: https://evaltravaux-api.onrender.com
