@@ -7,7 +7,8 @@ import { DevisFormWithEstimate } from "./DevisFormWithEstimate";
 
 type Params = {
   params: {
-    "metier-ville": string;
+    metier: string;
+    ville: string;
   };
 };
 
@@ -19,7 +20,8 @@ export function generateStaticParams() {
   return getDevisSlugs();
 }
 
-function decodeSlug(slug: string) {
+function decodeSlug(slug: string | undefined): { trade: string; city: string } | null {
+  if (!slug || typeof slug !== "string") return null;
   const parts = slug.split("-");
   if (parts.length < 2) return null;
   const trade = parts[0];
@@ -27,8 +29,15 @@ function decodeSlug(slug: string) {
   return { trade, city };
 }
 
+function getSlugFromParams(params: Params["params"]): string | undefined {
+  if (!params) return undefined;
+  if (params.metier && params.ville) return `${params.metier}-${params.ville}`;
+  return undefined;
+}
+
 export function generateMetadata({ params }: Params): Metadata {
-  const decoded = decodeSlug(params["metier-ville"]);
+  const slug = getSlugFromParams(params);
+  const decoded = decodeSlug(slug);
   if (!decoded) {
     return {
       title: "Demande de devis travaux – EvalTravaux",
@@ -46,7 +55,8 @@ export function generateMetadata({ params }: Params): Metadata {
 }
 
 export default function SeoDevisPage({ params }: Params) {
-  const decoded = decodeSlug(params["metier-ville"]);
+  const slug = getSlugFromParams(params);
+  const decoded = decodeSlug(slug);
   if (!decoded) return notFound();
 
   const trade = decoded.trade.toLowerCase();

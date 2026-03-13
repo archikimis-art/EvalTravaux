@@ -41,11 +41,11 @@ export type SeoTrade = (typeof SEO_TRADES)[number];
 export type SeoCity = (typeof SEO_CITIES)[number];
 
 /** Génère tous les slugs metier-ville pour generateStaticParams (ISR). */
-export function getDevisSlugs(): { "metier-ville": string }[] {
-  const slugs: { "metier-ville": string }[] = [];
+export function getDevisSlugs(): { metier: string; ville: string }[] {
+  const slugs: { metier: string; ville: string }[] = [];
   for (const trade of SEO_TRADES) {
     for (const city of SEO_CITIES) {
-      slugs.push({ "metier-ville": `${trade}-${city}` });
+      slugs.push({ metier: trade, ville: city });
     }
   }
   return slugs;
