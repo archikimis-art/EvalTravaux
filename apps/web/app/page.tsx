@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const NAVY = "#0f2b46";
 const ORANGE = "#ff7a00";
-const CONTAINER_STYLE = { width: "100%", maxWidth: "100%", margin: 0, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" };
+const CONTAINER_STYLE = { width: "100%", maxWidth: "100%", margin: 0, paddingLeft: 40, paddingRight: 40 };
 
 const WORK_CATEGORIES = [
   { label: "Plomberie", slug: "plombier", icon: "🔧", desc: "Fuite, chauffe-eau, salle de bains" },
