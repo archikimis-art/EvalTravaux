@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const NAVY = "#0f2b46";
 const ORANGE = "#ff7a00";
-const CONTAINER_STYLE = { maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 };
+const CONTAINER_STYLE = { width: "100%", maxWidth: "100%", margin: 0, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" };
 
 const WORK_CATEGORIES = [
   { label: "Plomberie", slug: "plombier", icon: "🔧", desc: "Fuite, chauffe-eau, salle de bains" },
@@ -40,9 +40,9 @@ export default function HomePage() {
     <main style={{ minHeight: "100vh", background: "#fff", color: "#0f172a", fontFamily: "system-ui, sans-serif" }}>
       {/* Header */}
       <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, background: NAVY, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-        <div style={{ ...CONTAINER_STYLE, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 0" }}>
+        <div style={{ ...CONTAINER_STYLE, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "24px 0" }}>
           <Link href="/">
-            <img src="/logo-dark.png" alt="EvalTravaux" style={{ height: 72, width: "auto" }} />
+            <img src="/logo-dark.png" alt="EvalTravaux" style={{ height: 560, width: "auto", objectFit: "contain" }} />
           </Link>
           <nav style={{ display: "flex", gap: 12 }}>
             <Link href="/login" style={{ color: "rgba(255,255,255,0.9)", padding: "8px 16px", borderRadius: 8, textDecoration: "none" }}>Connexion</Link>
@@ -52,7 +52,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero */}
-      <section style={{ background: NAVY, paddingTop: 120, paddingBottom: 80 }}>
+      <section style={{ background: NAVY, paddingTop: 620, paddingBottom: 80 }}>
         <div style={{ ...CONTAINER_STYLE, display: "flex", flexWrap: "wrap", alignItems: "center", gap: 48, justifyContent: "space-between" }}>
           <div style={{ flex: 1, minWidth: 280 }}>
             <h1 style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)", fontWeight: 700, color: "#fff", margin: 0, lineHeight: 1.2 }}>
@@ -192,7 +192,7 @@ export default function HomePage() {
       <footer style={{ background: NAVY, color: "#fff", padding: "64px 0 32px" }}>
         <div style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 48 }}>
           <div>
-            <img src="/logo-dark.png" alt="EvalTravaux" style={{ height: 64, width: "auto" }} />
+            <img src="/logo-dark.png" alt="EvalTravaux" style={{ height: 480, width: "auto", objectFit: "contain" }} />
           </div>
           <div>
             <h4 style={{ fontWeight: 600, margin: 0 }}>EvalTravaux</h4>
