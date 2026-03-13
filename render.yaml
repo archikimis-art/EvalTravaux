@@ -21,7 +21,7 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: CORS_ORIGIN
-        value: https://evaltravaux.onrender.com
+        value: https://evaltravaux.fr,https://www.evaltravaux.fr,https://evaltravaux.paris
       - key: NODE_ENV
         value: production
       - key: STRIPE_SECRET_KEY

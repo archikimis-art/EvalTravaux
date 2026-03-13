@@ -1,335 +1,226 @@
 import Link from "next/link";
-import Image from "next/image";
+
+const NAVY = "#0f2b46";
+const ORANGE = "#ff7a00";
+const CONTAINER_STYLE = { maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 };
+
+const WORK_CATEGORIES = [
+  { label: "Plomberie", slug: "plombier", icon: "🔧", desc: "Fuite, chauffe-eau, salle de bains" },
+  { label: "Électricité", slug: "electricien", icon: "💡", desc: "Mise aux normes, tableau électrique" },
+  { label: "Rénovation", slug: "renovation", icon: "🏠", desc: "Appartement, maison complète" },
+  { label: "Salle de bain", slug: "plombier", icon: "🛁", desc: "Carrelage, douche, sanitaires" },
+  { label: "Cuisine", slug: "menuisier", icon: "🍳", desc: "Aménagement, plans de travail" },
+  { label: "Isolation", slug: "renovation", icon: "🧱", desc: "Thermique, phonique, combles" },
+  { label: "Peinture", slug: "peintre", icon: "🎨", desc: "Intérieur, extérieur, décoration" },
+  { label: "Chauffage", slug: "chauffagiste", icon: "🔥", desc: "Chaudière, radiateurs, pompe à chaleur" },
+];
+
+const TRUST_SIGNALS = [
+  { label: "Artisans vérifiés", icon: "✓" },
+  { label: "Devis gratuits", icon: "€" },
+  { label: "Réponse rapide", icon: "⚡" },
+  { label: "Plateforme sécurisée", icon: "🛡" },
+];
+
+const ADVANTAGES = [
+  { title: "Devis gratuits", desc: "Aucun frais pour les particuliers", icon: "€" },
+  { title: "Artisans vérifiés", desc: "Documents et avis contrôlés", icon: "🛡" },
+  { title: "Comparaison simple", desc: "Offres structurées et comparables", icon: "📄" },
+  { title: "Gain de temps", desc: "Réponse sous 24-48h ouvrées", icon: "⏱" },
+];
+
+const TESTIMONIALS = [
+  { name: "Marie L.", city: "Lyon", text: "J'ai reçu 4 devis en 48h. Très pratique pour comparer les prix." },
+  { name: "Thomas D.", city: "Paris", text: "Service fluide et professionnel. Mon plombier a été réactif." },
+  { name: "Sophie M.", city: "Bordeaux", text: "Enfin une plateforme sérieuse ! Les artisans sont vérifiés." },
+];
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50">
-      <div className="relative overflow-hidden">
-        {/* Bandeau de fond */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] bg-gradient-to-br from-sky-500 via-slate-900 to-slate-950" />
-
-        <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-10 pt-6 sm:px-6 lg:px-8">
-          {/* Header */}
-          <header className="mb-10 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <Link href="/" className="flex items-center gap-2">
-                <Image
-                  src="/logo.png"
-                  alt="EvalTravaux"
-                  width={170}
-                  height={48}
-                  priority
-                  className="h-9 w-auto object-contain drop-shadow-sm"
-                />
-              </Link>
-              <p className="hidden max-w-xs text-xs text-slate-100/80 sm:block">
-                Plateforme professionnelle de demandes de devis travaux, avec artisans vérifiés et
-                estimation indicative par IA.
-              </p>
-            </div>
-
-            <nav className="flex items-center gap-3 text-xs font-medium">
-              <Link
-                href="/login"
-                className="rounded-full border border-slate-500/70 bg-slate-900/60 px-3 py-1.5 text-slate-50 hover:border-sky-400 hover:bg-slate-900 transition-colors"
-              >
-                Connexion
-              </Link>
-              <Link
-                href="/register"
-                className="rounded-full bg-sky-400 px-3.5 py-1.5 text-slate-950 shadow-sm hover:bg-sky-300 transition-colors"
-              >
-                Inscription artisan
-              </Link>
-            </nav>
-          </header>
-
-          {/* Contenu principal */}
-          <div className="grid flex-1 grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.95fr)] lg:items-center">
-            {/* Colonne gauche : Hero + CTA */}
-            <section className="space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-sky-300/30 bg-sky-950/40 px-3 py-1 text-[11px] font-medium text-sky-100 shadow-sm backdrop-blur">
-                <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                Devis gratuits et sans engagement
-              </div>
-
-              <div className="space-y-4">
-                <h1 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
-                  Obtenez plusieurs devis travaux{" "}
-                  <span className="bg-gradient-to-r from-sky-300 to-emerald-300 bg-clip-text text-transparent">
-                    fiables et comparables
-                  </span>
-                  .
-                </h1>
-                <p className="max-w-xl text-sm leading-relaxed text-slate-100/80 sm:text-base">
-                  Décrivez votre projet en quelques questions, recevez une estimation indicative
-                  générée par IA puis comparez les offres d’artisans qualifiés près de chez vous.
-                </p>
-              </div>
-
-              {/* CTA principaux */}
-              <div className="flex flex-wrap items-center gap-3">
-                <Link
-                  href="/devis-plombier-paris"
-                  className="inline-flex items-center justify-center rounded-full bg-sky-400 px-5 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-sky-500/30 hover:bg-sky-300 transition-colors"
-                >
-                  Demander un devis travaux
-                </Link>
-                <Link
-                  href="#fonctionnement"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-500/60 bg-slate-900/40 px-5 py-2 text-sm font-medium text-slate-50 hover:border-sky-300 hover:bg-slate-900 transition-colors"
-                >
-                  Comment ça marche ?
-                </Link>
-                <p className="w-full text-xs text-slate-200/80 sm:w-auto">
-                  Réponse moyenne sous 24 à 48h ouvrées.
-                </p>
-              </div>
-
-              {/* Réassurances */}
-              <div className="grid gap-3 text-xs text-slate-100/80 sm:grid-cols-3">
-                <div className="rounded-xl border border-slate-700/70 bg-slate-900/50 px-3 py-3">
-                  <p className="font-semibold text-slate-50">Artisans vérifiés</p>
-                  <p className="mt-1 text-[11px] text-slate-300">
-                    Dossiers vérifiés manuellement et avis clients contrôlés.
-                  </p>
-                </div>
-                <div className="rounded-xl border border-slate-700/70 bg-slate-900/50 px-3 py-3">
-                  <p className="font-semibold text-slate-50">Devis comparables</p>
-                  <p className="mt-1 text-[11px] text-slate-300">
-                    Un même brief pour des offres structurées de façon homogène.
-                  </p>
-                </div>
-                <div className="rounded-xl border border-slate-700/70 bg-slate-900/50 px-3 py-3">
-                  <p className="font-semibold text-slate-50">Gratuit & sans engagement</p>
-                  <p className="mt-1 text-[11px] text-slate-300">
-                    Vous choisissez l’artisan qui vous convient, ou aucun.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            {/* Colonne droite : bloc estimation / aperçu interface */}
-            <section className="mt-2 lg:mt-0">
-              <div className="rounded-2xl border border-sky-100/10 bg-slate-900/70 p-4 shadow-[0_18px_60px_-30px_rgba(15,23,42,0.9)] backdrop-blur">
-                <div className="mb-3 flex items-center justify-between gap-2">
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.16em] text-sky-300">
-                      Aperçu estimation IA
-                    </p>
-                    <p className="mt-1 text-xs text-slate-300">
-                      Exemple pour un projet de rénovation d’appartement.
-                    </p>
-                  </div>
-                  <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-[11px] font-medium text-emerald-300">
-                    Simulation indicative
-                  </span>
-                </div>
-
-                <div className="space-y-3 rounded-xl border border-slate-700/80 bg-slate-950/60 p-3">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-300">Budget estimé</span>
-                    <span className="font-semibold text-slate-50">18 000 € – 24 000 € TTC</span>
-                  </div>
-                  <div className="relative h-1.5 overflow-hidden rounded-full bg-slate-800">
-                    <div className="absolute inset-y-0 left-[5%] right-[30%] rounded-full bg-gradient-to-r from-sky-400 to-emerald-400" />
-                  </div>
-                  <p className="text-[11px] text-slate-400">
-                    Fourchette calculée selon des projets similaires. Le prix final dépendra des
-                    devis détaillés de chaque artisan.
-                  </p>
-                </div>
-
-                <div className="mt-4 grid gap-3 text-xs text-slate-100/90 sm:grid-cols-2">
-                  <div className="space-y-2 rounded-xl border border-slate-700/80 bg-slate-950/60 p-3">
-                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
-                      Étapes de votre projet
-                    </p>
-                    <ul className="space-y-1.5">
-                      <li className="flex items-start gap-2">
-                        <span className="mt-[2px] h-1.5 w-1.5 rounded-full bg-sky-400" />
-                        <span>Brief précis de votre besoin en quelques questions ciblées.</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-[2px] h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                        <span>Analyse automatique par IA et qualification de votre demande.</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-[2px] h-1.5 w-1.5 rounded-full bg-sky-200" />
-                        <span>Transmission aux artisans partenaires les plus adaptés.</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-700/80 bg-slate-950/60 p-3">
-                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
-                      Exemple de devis reçus
-                    </p>
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between rounded-lg border border-slate-700/80 bg-slate-900/60 px-2.5 py-1.5">
-                        <span className="text-[11px] text-slate-200">Artisan A • Paris 11e</span>
-                        <span className="text-[11px] font-semibold text-sky-300">19 200 €</span>
-                      </div>
-                      <div className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/40 px-2.5 py-1.5">
-                        <span className="text-[11px] text-slate-200">Artisan B • Montreuil</span>
-                        <span className="text-[11px] font-semibold text-sky-200">21 800 €</span>
-                      </div>
-                      <div className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/40 px-2.5 py-1.5">
-                        <span className="text-[11px] text-slate-200">Artisan C • Saint-Denis</span>
-                        <span className="text-[11px] font-semibold text-slate-100">23 500 €</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          {/* Section fonctionnement */}
-          <section
-            id="fonctionnement"
-            className="mt-14 grid gap-6 rounded-2xl border border-slate-800 bg-slate-900/80 px-4 py-6 sm:px-6 sm:py-7 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
-          >
-            <div className="space-y-3">
-              <h2 className="text-lg font-semibold text-slate-50">
-                Comment fonctionne EvalTravaux ?
-              </h2>
-              <p className="text-sm text-slate-300">
-                Notre objectif : vous permettre de comparer des devis réellement comparables, en
-                toute transparence, avec des artisans sérieux.
-              </p>
-            </div>
-
-            <div className="grid gap-3 text-sm sm:grid-cols-3">
-              <div className="rounded-xl border border-slate-800 bg-slate-950/70 p-3">
-                <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
-                  Étape 1
-                </p>
-                <p className="mt-1.5 font-medium text-slate-50">Vous décrivez votre projet</p>
-                <p className="mt-1 text-xs text-slate-300">
-                  Quelques questions guidées pour préciser votre besoin, vos délais et votre budget.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-800 bg-slate-950/70 p-3">
-                <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
-                  Étape 2
-                </p>
-                <p className="mt-1.5 font-medium text-slate-50">
-                  Nous qualifions et transmettons votre demande
-                </p>
-                <p className="mt-1 text-xs text-slate-300">
-                  Analyse automatique, vérification manuelle lorsque nécessaire, puis envoi aux
-                  artisans les plus adaptés.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-800 bg-slate-950/70 p-3">
-                <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
-                  Étape 3
-                </p>
-                <p className="mt-1.5 font-medium text-slate-50">Vous comparez les devis reçus</p>
-                <p className="mt-1 text-xs text-slate-300">
-                  Prix, délais, avis clients, détails de prestation : vous gardez la main sur le
-                  choix final.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* Exemples de pages devis locales */}
-          <section className="mt-10">
-            <div className="mb-3 flex items-center justify-between gap-3">
-              <div>
-                <h3 className="text-sm font-semibold text-slate-50">
-                  Exemples de pages devis locales
-                </h3>
-                <p className="mt-1 text-xs text-slate-300">
-                  Inspirez-vous des parcours les plus demandés sur la plateforme.
-                </p>
-              </div>
-              <Link
-                href="/devis-renovation-marseille"
-                className="hidden text-xs font-medium text-sky-300 hover:text-sky-200 sm:inline-flex"
-              >
-                Voir un exemple complet
-              </Link>
-            </div>
-
-            <div className="grid gap-3 text-sm sm:grid-cols-3">
-              <Link
-                href="/devis-plombier-paris"
-                className="group flex flex-col justify-between rounded-xl border border-slate-800 bg-slate-950/70 p-3 hover:border-sky-400/70 hover:bg-slate-950/90 transition-colors"
-              >
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">
-                    Plomberie
-                  </p>
-                  <p className="mt-1 font-semibold text-slate-50">Devis plombier à Paris</p>
-                  <p className="mt-1 text-xs text-slate-300">
-                    Fuite, salle de bains, chauffe-eau : comparez plusieurs propositions.
-                  </p>
-                </div>
-                <span className="mt-3 text-[11px] font-medium text-sky-300 group-hover:text-sky-200">
-                  Lancer ma demande →
-                </span>
-              </Link>
-
-              <Link
-                href="/devis-electricien-lyon"
-                className="group flex flex-col justify-between rounded-xl border border-slate-800 bg-slate-950/70 p-3 hover:border-sky-400/70 hover:bg-slate-950/90 transition-colors"
-              >
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">
-                    Électricité
-                  </p>
-                  <p className="mt-1 font-semibold text-slate-50">Devis électricien à Lyon</p>
-                  <p className="mt-1 text-xs text-slate-300">
-                    Mise aux normes, tableau électrique, rénovation complète.
-                  </p>
-                </div>
-                <span className="mt-3 text-[11px] font-medium text-sky-300 group-hover:text-sky-200">
-                  Lancer ma demande →
-                </span>
-              </Link>
-
-              <Link
-                href="/devis-renovation-marseille"
-                className="group flex flex-col justify-between rounded-xl border border-slate-800 bg-slate-950/70 p-3 hover:border-sky-400/70 hover:bg-slate-950/90 transition-colors"
-              >
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">
-                    Rénovation globale
-                  </p>
-                  <p className="mt-1 font-semibold text-slate-50">
-                    Devis rénovation appartement à Marseille
-                  </p>
-                  <p className="mt-1 text-xs text-slate-300">
-                    Idéal pour un projet incluant plusieurs corps de métier.
-                  </p>
-                </div>
-                <span className="mt-3 text-[11px] font-medium text-sky-300 group-hover:text-sky-200">
-                  Lancer ma demande →
-                </span>
-              </Link>
-            </div>
-          </section>
-
-          {/* Footer simple */}
-          <footer className="mt-10 flex flex-col gap-3 border-t border-slate-800 pt-5 text-[11px] text-slate-400 sm:flex-row sm:items-center sm:justify-between">
-            <p>© {new Date().getFullYear()} EvalTravaux. Tous droits réservés.</p>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-              <Link href="/mentions-legales" className="hover:text-slate-200">
-                Mentions légales
-              </Link>
-              <Link href="/cgu" className="hover:text-slate-200">
-                CGU
-              </Link>
-              <Link href="/pro" className="hover:text-slate-200">
-                Espace artisans
-              </Link>
-            </div>
-          </footer>
+    <main style={{ minHeight: "100vh", background: "#fff", color: "#0f172a", fontFamily: "system-ui, sans-serif" }}>
+      {/* Header */}
+      <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, background: NAVY, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+        <div style={{ ...CONTAINER_STYLE, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 0" }}>
+          <Link href="/">
+            <img src="/logo-dark.png" alt="EvalTravaux" style={{ height: 72, width: "auto" }} />
+          </Link>
+          <nav style={{ display: "flex", gap: 12 }}>
+            <Link href="/login" style={{ color: "rgba(255,255,255,0.9)", padding: "8px 16px", borderRadius: 8, textDecoration: "none" }}>Connexion</Link>
+            <Link href="/register" style={{ background: ORANGE, color: "#fff", padding: "8px 16px", borderRadius: 8, fontWeight: 600, textDecoration: "none" }}>Inscription artisan</Link>
+          </nav>
         </div>
-      </div>
+      </header>
+
+      {/* Hero */}
+      <section style={{ background: NAVY, paddingTop: 120, paddingBottom: 80 }}>
+        <div style={{ ...CONTAINER_STYLE, display: "flex", flexWrap: "wrap", alignItems: "center", gap: 48, justifyContent: "space-between" }}>
+          <div style={{ flex: 1, minWidth: 280 }}>
+            <h1 style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)", fontWeight: 700, color: "#fff", margin: 0, lineHeight: 1.2 }}>
+              Comparez plusieurs devis travaux fiables en quelques minutes
+            </h1>
+            <p style={{ fontSize: 18, color: "rgba(255,255,255,0.9)", marginTop: 24, maxWidth: 500 }}>
+              Décrivez votre projet et recevez rapidement des devis d&apos;artisans qualifiés.
+            </p>
+            <Link href="/devis-plombier-paris" style={{ display: "inline-block", background: ORANGE, color: "#fff", padding: "16px 32px", borderRadius: 12, fontWeight: 600, fontSize: 18, marginTop: 24, textDecoration: "none" }}>
+              Obtenir mes devis gratuits
+            </Link>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 24, marginTop: 24, fontSize: 14, color: "rgba(255,255,255,0.8)" }}>
+              <span>✓ Devis gratuits</span>
+              <span>✓ Artisans vérifiés</span>
+              <span>✓ Sans engagement</span>
+            </div>
+          </div>
+          <div style={{ flex: 1, display: "flex", alignItems: "flex-end", gap: 16, justifyContent: "center" }}>
+            <span style={{ fontSize: 64 }}>🏠</span>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+              <span style={{ background: "rgba(255,255,255,0.1)", padding: "8px 16px", borderRadius: 8, color: "#fff", fontSize: 14 }}>✓ Checklist</span>
+              <span style={{ fontSize: 48 }}>👷</span>
+            </div>
+            <span style={{ fontSize: 48, color: ORANGE }}>✓</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Bar */}
+      <section style={{ background: "#fff", padding: "16px 0", borderBottom: "1px solid #e2e8f0" }}>
+        <div style={{ ...CONTAINER_STYLE, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 32 }}>
+          {TRUST_SIGNALS.map((s) => (
+            <div key={s.label} style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ width: 40, height: 40, borderRadius: "50%", background: "rgba(15,43,70,0.1)", display: "flex", alignItems: "center", justifyContent: "center", color: NAVY }}>{s.icon}</div>
+              <span style={{ fontWeight: 500, color: "#334155" }}>{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Comment ça marche */}
+      <section id="comment-ca-marche" style={{ padding: "80px 0" }}>
+        <div style={CONTAINER_STYLE}>
+          <h2 style={{ textAlign: "center", fontSize: "clamp(1.5rem, 3vw, 2.25rem)", fontWeight: 700, color: "#0f172a", margin: 0 }}>
+            Comment fonctionne EvalTravaux ?
+          </h2>
+          <p style={{ textAlign: "center", color: "#475569", marginTop: 16, maxWidth: 600, marginLeft: "auto", marginRight: "auto" }}>
+            Un parcours simple en 3 étapes pour obtenir des devis comparables.
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 32, marginTop: 48 }}>
+            {[1, 2, 3].map((n, i) => (
+              <div key={n} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 16, padding: 32, boxShadow: "0 4px 6px rgba(0,0,0,0.05)" }}>
+                <div style={{ width: 48, height: 48, borderRadius: "50%", background: NAVY, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, marginBottom: 16 }}>{n}</div>
+                <h3 style={{ fontSize: 20, fontWeight: 600, margin: 0 }}>{["Décrivez votre projet", "Recevez plusieurs devis d'artisans", "Comparez et choisissez le meilleur"][i]}</h3>
+                <p style={{ color: "#475569", marginTop: 8, fontSize: 14 }}>{["Quelques questions guidées pour préciser votre besoin.", "Votre demande est transmise aux artisans qualifiés. Réponse sous 24-48h.", "Prix, délais, avis clients : vous gardez la main."][i]}</p>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 48 }}>
+            <Link href="/devis-plombier-paris" style={{ display: "inline-block", background: ORANGE, color: "#fff", padding: "16px 32px", borderRadius: 12, fontWeight: 600, fontSize: 18, textDecoration: "none" }}>
+              Démarrer ma demande →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Types de travaux */}
+      <section style={{ background: "#f8fafc", padding: "80px 0" }}>
+        <div style={CONTAINER_STYLE}>
+          <h2 style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", fontWeight: 700, margin: 0 }}>Types de travaux</h2>
+          <p style={{ color: "#475569", marginTop: 16 }}>Choisissez le type de travaux qui correspond à votre projet.</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 16, marginTop: 48 }}>
+            {WORK_CATEGORIES.map((cat) => (
+              <Link key={cat.label} href={`/devis-${cat.slug}-paris`} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 16, padding: 24, textDecoration: "none", color: "inherit" }}>
+                <div style={{ width: 48, height: 48, borderRadius: 12, background: "rgba(15,43,70,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{cat.icon}</div>
+                <h3 style={{ marginTop: 16, fontWeight: 600 }}>{cat.label}</h3>
+                <p style={{ marginTop: 8, fontSize: 14, color: "#64748b" }}>{cat.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Avantages */}
+      <section style={{ padding: "80px 0" }}>
+        <div style={CONTAINER_STYLE}>
+          <h2 style={{ textAlign: "center", fontSize: "clamp(1.5rem, 3vw, 2.25rem)", fontWeight: 700, margin: 0 }}>Pourquoi utiliser EvalTravaux ?</h2>
+          <p style={{ textAlign: "center", color: "#475569", marginTop: 16 }}>Des avantages concrets pour simplifier vos projets.</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 24, marginTop: 48 }}>
+            {ADVANTAGES.map((adv) => (
+              <div key={adv.title} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 16, padding: 24, boxShadow: "0 4px 6px rgba(0,0,0,0.05)" }}>
+                <div style={{ width: 48, height: 48, borderRadius: 12, background: "rgba(15,43,70,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, color: NAVY }}>{adv.icon}</div>
+                <h3 style={{ marginTop: 16, fontWeight: 600 }}>{adv.title}</h3>
+                <p style={{ marginTop: 8, fontSize: 14, color: "#475569" }}>{adv.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Témoignages */}
+      <section style={{ padding: "80px 0" }}>
+        <div style={CONTAINER_STYLE}>
+          <h2 style={{ textAlign: "center", fontSize: "clamp(1.5rem, 3vw, 2.25rem)", fontWeight: 700, margin: 0 }}>Ce que disent nos utilisateurs</h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 32, marginTop: 48 }}>
+            {TESTIMONIALS.map((t) => (
+              <div key={t.name} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 16, padding: 32, boxShadow: "0 4px 6px rgba(0,0,0,0.05)" }}>
+                <div style={{ color: ORANGE }}>★★★★★</div>
+                <p style={{ color: "#475569", marginTop: 16 }}>&ldquo;{t.text}&rdquo;</p>
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 24 }}>
+                  <div style={{ width: 40, height: 40, borderRadius: "50%", background: "rgba(15,43,70,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, color: NAVY }}>{t.name[0]}</div>
+                  <div>
+                    <p style={{ fontWeight: 600, margin: 0 }}>{t.name}</p>
+                    <p style={{ fontSize: 14, color: "#64748b", margin: 0 }}>{t.city}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Final */}
+      <section style={{ background: NAVY, padding: "80px 0" }}>
+        <div style={CONTAINER_STYLE}>
+          <div style={{ maxWidth: 600, margin: "0 auto", background: "#fff", borderRadius: 16, padding: 40, textAlign: "center", boxShadow: "0 25px 50px rgba(0,0,0,0.25)" }}>
+            <h2 style={{ fontSize: "clamp(1.25rem, 2vw, 1.875rem)", fontWeight: 700, color: "#0f172a", margin: 0 }}>Recevez vos devis travaux gratuitement</h2>
+            <p style={{ color: "#475569", marginTop: 16 }}>Décrivez votre projet et recevez rapidement des devis comparables.</p>
+            <Link href="/devis-plombier-paris" style={{ display: "inline-block", background: ORANGE, color: "#fff", padding: "16px 32px", borderRadius: 12, fontWeight: 600, fontSize: 18, marginTop: 24, textDecoration: "none" }}>
+              Demander mes devis
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{ background: NAVY, color: "#fff", padding: "64px 0 32px" }}>
+        <div style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 48 }}>
+          <div>
+            <img src="/logo-dark.png" alt="EvalTravaux" style={{ height: 64, width: "auto" }} />
+          </div>
+          <div>
+            <h4 style={{ fontWeight: 600, margin: 0 }}>EvalTravaux</h4>
+            <ul style={{ listStyle: "none", padding: 0, marginTop: 16 }}>
+              <li><Link href="#comment-ca-marche" style={{ color: "#94a3b8", textDecoration: "none" }}>Comment ça marche</Link></li>
+              <li><Link href="/contact" style={{ color: "#94a3b8", textDecoration: "none" }}>Contact</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style={{ fontWeight: 600, margin: 0 }}>Travaux</h4>
+            <ul style={{ listStyle: "none", padding: 0, marginTop: 16 }}>
+              <li><Link href="/devis-plombier-paris" style={{ color: "#94a3b8", textDecoration: "none" }}>Plomberie</Link></li>
+              <li><Link href="/devis-renovation-paris" style={{ color: "#94a3b8", textDecoration: "none" }}>Rénovation</Link></li>
+              <li><Link href="/devis-menuisier-paris" style={{ color: "#94a3b8", textDecoration: "none" }}>Cuisine</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style={{ fontWeight: 600, margin: 0 }}>Legal</h4>
+            <ul style={{ listStyle: "none", padding: 0, marginTop: 16 }}>
+              <li><Link href="/mentions-legales" style={{ color: "#94a3b8", textDecoration: "none" }}>Mentions légales</Link></li>
+              <li><Link href="/politique-confidentialite" style={{ color: "#94a3b8", textDecoration: "none" }}>Politique de confidentialité</Link></li>
+            </ul>
+          </div>
+        </div>
+        <p style={{ textAlign: "center", color: "#94a3b8", fontSize: 14, marginTop: 48, paddingTop: 32, borderTop: "1px solid #334155" }}>
+          © {new Date().getFullYear()} EvalTravaux. Tous droits réservés.
+        </p>
+      </footer>
     </main>
   );
 }

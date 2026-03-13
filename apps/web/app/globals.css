@@ -2,7 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --brand-navy: #0f2b46;
+    --brand-orange: #ff7a00;
+  }
+}
+
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #0f172a;
 }
 

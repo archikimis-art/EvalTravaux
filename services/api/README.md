@@ -63,7 +63,7 @@ Variables d'environnement à configurer sur Render pour l'API :
 |----------|--------------|
 | `DATABASE_URL` | URL PostgreSQL (Render propose une base PostgreSQL) |
 | `JWT_SECRET` | Secret pour signer les JWT (générer une chaîne aléatoire) |
-| `CORS_ORIGIN` | URL du frontend (ex. `https://evaltravaux.onrender.com`) |
+| `CORS_ORIGIN` | URL du frontend (ex. `https://evaltravaux.fr`) |
 | `STRIPE_SECRET_KEY` | Clé secrète Stripe pour les paiements |
 
 Le frontend (Next.js) doit définir `NEXT_PUBLIC_API_URL` vers l'URL de cette API (ex. `https://evaltravaux-api.onrender.com`).

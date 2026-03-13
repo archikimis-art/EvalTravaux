@@ -76,11 +76,11 @@ Un fichier **`render.yaml`** est à la racine du projet. Il définit automatique
 |-----|-------|
 | `DATABASE_URL` | Collez l’**Internal Database URL** de l’étape 1 |
 | `JWT_SECRET` | Générez une chaîne aléatoire (ex. `openssl rand -hex 32`) |
-| `CORS_ORIGIN` | `https://evaltravaux.onrender.com` *(à ajuster après création du frontend)* |
+| `CORS_ORIGIN` | `https://evaltravaux.fr,https://evaltravaux.paris` *(domaines séparés par des virgules)* |
 | `NODE_ENV` | `production` |
 | `STRIPE_SECRET_KEY` | Votre clé secrète Stripe (sk_live_... ou sk_test_...) |
 
-7. Pour `CORS_ORIGIN` : si vous ne connaissez pas encore l’URL du frontend, mettez temporairement `https://*.onrender.com` ou créez d’abord le service Web (étape 3) pour obtenir son URL, puis revenez modifier `CORS_ORIGIN`.
+7. Pour `CORS_ORIGIN` : si vous ne connaissez pas encore l’URL du frontend, mettez temporairement `https://evaltravaux.fr` ou créez d’abord le service Web (étape 3) pour obtenir son URL, puis revenez modifier `CORS_ORIGIN`.
 
 8. Cliquez sur **Create Web Service**
 9. Attendez le premier déploiement. Une fois terminé, notez l’URL de l’API (ex. `https://evaltravaux-api.onrender.com`)
@@ -117,7 +117,7 @@ Le formulaire de devis public a besoin d’un customer par défaut. Le seed Pris
 | `NEXT_PUBLIC_PUBLIC_CUSTOMER_ID` | L’ID du customer public créé à l’étape 3 |
 
 5. Cliquez sur **Create Web Service**
-6. Notez l’URL du frontend (ex. `https://evaltravaux.onrender.com`)
+6. Notez l’URL du frontend (ex. `https://evaltravaux.fr`)
 
 ---
 
@@ -126,14 +126,14 @@ Le formulaire de devis public a besoin d’un customer par défaut. Le seed Pris
 1. Retournez dans le service **evaltravaux-api**
 2. Onglet **Environment**
 3. Modifiez `CORS_ORIGIN` pour qu’il corresponde exactement à l’URL du frontend :
-   - Exemple : `https://evaltravaux.onrender.com`
+   - Exemple : `https://evaltravaux.fr`
 4. Sauvegardez. Render redéploiera automatiquement.
 
 ---
 
 ## Étape 6 : Vérifications
 
-1. **Frontend** : Ouvrez `https://evaltravaux.onrender.com` (ou votre URL)
+1. **Frontend** : Ouvrez `https://evaltravaux.fr` (ou votre URL)
 2. **Inscription** : Testez l’inscription d’un professionnel
 3. **Formulaire devis** : Remplissez une demande de devis sur une page type `/devis-plombier-paris`
 4. **Dashboard pro** : Connectez-vous et vérifiez les leads, l’achat de crédits Stripe
@@ -173,11 +173,23 @@ Le formulaire de devis public a besoin d’un customer par défaut. Le seed Pris
 
 ---
 
+## Domaines personnalisés (evaltravaux.fr, evaltravaux.paris)
+
+1. **Service evaltravaux** (frontend) : **Settings** → **Custom Domains** → ajouter :
+   - `evaltravaux.fr`
+   - `www.evaltravaux.fr`
+   - `evaltravaux.paris`
+   - `www.evaltravaux.paris`
+2. **DNS** (chez domaines.fr) : créer des enregistrements CNAME pour chaque domaine/subdomaine pointant vers l’URL indiquée par Render (ex. `evaltravaux.onrender.com`).
+3. **API** : `CORS_ORIGIN` = `https://evaltravaux.fr,https://evaltravaux.paris` (les deux domaines sont déjà autorisés).
+
+---
+
 ## Récapitulatif des URLs
 
 | Service | URL typique |
 |---------|-------------|
-| Frontend | `https://evaltravaux.onrender.com` |
+| Frontend | `https://evaltravaux.fr` / `https://evaltravaux.paris` |
 | API | `https://evaltravaux-api.onrender.com` |
 | Base de données | Internal uniquement (non accessible depuis l’extérieur) |
 

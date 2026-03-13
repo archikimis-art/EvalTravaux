@@ -30,7 +30,7 @@ Exemple : `a1b2c3d4e5f6789012345678901234567890abcdef`
 
 ### 3. CORS_ORIGIN
 **Key:** `CORS_ORIGIN`  
-**Value:** `https://evaltravaux.onrender.com`
+**Value:** `https://evaltravaux.fr,https://evaltravaux.paris`
 
 ### 4. NODE_ENV
 **Key:** `NODE_ENV`  
