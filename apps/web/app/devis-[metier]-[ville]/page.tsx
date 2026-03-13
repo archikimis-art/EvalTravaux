@@ -6,10 +6,7 @@ import { getDevisSlugs } from "../../config/seo";
 import { DevisFormWithEstimate } from "./DevisFormWithEstimate";
 
 type Params = {
-  params: {
-    metier: string;
-    ville: string;
-  };
+  params: { "metier-ville"?: string; metier?: string; ville?: string };
 };
 
 /** ISR : revalider les pages devis toutes les heures */
@@ -21,22 +18,25 @@ export function generateStaticParams() {
 }
 
 function decodeSlug(slug: string | undefined): { trade: string; city: string } | null {
-  if (!slug || typeof slug !== "string") return null;
-  const parts = slug.split("-");
+  const s = slug != null && typeof slug === "string" ? slug : "";
+  if (!s) return null;
+  const parts = s.split("-");
   if (parts.length < 2) return null;
   const trade = parts[0];
   const city = parts.slice(1).join("-");
   return { trade, city };
 }
 
-function getSlugFromParams(params: Params["params"]): string | undefined {
+function getSlugFromParams(params: Params["params"] | undefined): string | undefined {
   if (!params) return undefined;
+  const combined = params["metier-ville"];
+  if (combined && typeof combined === "string") return combined;
   if (params.metier && params.ville) return `${params.metier}-${params.ville}`;
   return undefined;
 }
 
 export function generateMetadata({ params }: Params): Metadata {
-  const slug = getSlugFromParams(params);
+  const slug = getSlugFromParams(params ?? undefined);
   const decoded = decodeSlug(slug);
   if (!decoded) {
     return {
@@ -55,7 +55,7 @@ export function generateMetadata({ params }: Params): Metadata {
 }
 
 export default function SeoDevisPage({ params }: Params) {
-  const slug = getSlugFromParams(params);
+  const slug = getSlugFromParams(params ?? undefined);
   const decoded = decodeSlug(slug);
   if (!decoded) return notFound();
 

@@ -160,6 +160,17 @@ Le formulaire de devis public a besoin d’un customer par défaut. Le seed Pris
 - En test, utilisez `sk_test_...`
 - Les URLs de redirection (success/cancel) sont générées automatiquement par le frontend
 
+### "We don't have access to your repo" / Build utilise un ancien commit
+- Render peut déployer un commit obsolète si la connexion GitHub est limitée
+- **Solution** : Dashboard → votre service → **Settings** → **Build & Deploy**
+  - Vérifiez que **Branch** = `main`
+  - Cliquez sur **Manual Deploy** → **Deploy latest commit** pour forcer le dernier commit
+- Vérifiez que le dépôt GitHub est bien connecté (Dashboard → **Account Settings** → **Connected Accounts**)
+
+### Erreur "Cannot read properties of undefined (reading 'split')" sur la page devis
+- Cette erreur est corrigée depuis le commit qui utilise le param `metier-ville` pour le segment `[metier]-[ville]`
+- Si elle persiste, assurez-vous que Render déploie le **dernier commit** (voir ci-dessus)
+
 ---
 
 ## Récapitulatif des URLs
