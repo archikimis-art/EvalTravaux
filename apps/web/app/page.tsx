@@ -68,7 +68,7 @@ export default function HomePage() {
         <div className="content-centered hero-grid" style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center", minHeight: 320, overflow: "visible" }}>
           <div style={{ overflow: "visible", minWidth: 0 }}>
             <h1 style={{ fontSize: "clamp(1.4rem, 2.2vw, 1.9rem)", fontWeight: 700, color: WHITE, margin: 0, lineHeight: 1.25, letterSpacing: "-0.02em", wordBreak: "break-word" }}>
-              Comparez plusieurs devis travaux fiables en quelques minutes
+              Comparez plusieurs devis travaux fiables. <span style={{ whiteSpace: "nowrap" }}>Faites votre demande en quelques minutes.</span>
             </h1>
             <p style={{ fontSize: 15, color: "rgba(255,255,255,0.9)", marginTop: 14, maxWidth: 420, lineHeight: 1.5 }}>
               Décrivez votre projet et recevez rapidement des devis d&apos;artisans qualifiés.
