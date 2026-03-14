@@ -3,7 +3,7 @@ import Link from "next/link";
 const NAVY = "#0f2b46";
 const ORANGE = "#ff8c00";
 const WHITE = "#ffffff";
-const PX = 56;
+const PX = 64;
 const CONTAINER_STYLE = {
   width: "100%",
   maxWidth: 1440,
@@ -36,41 +36,41 @@ const STEPS = [
 
 export default function HomePage() {
   return (
-    <main className="layout-desktop-pc" style={{ width: "100%", maxWidth: "100%", minHeight: "100vh", background: WHITE, color: "#0f172a", fontFamily: "'Poppins', system-ui, sans-serif" }}>
+    <main className="layout-desktop-pc" style={{ width: "100%", maxWidth: "100%", minHeight: "100vh", background: WHITE, color: "#0f172a", fontFamily: "'Poppins', system-ui, sans-serif", overflowX: "hidden" }}>
       {/* Header - Logo gauche, CTA droite */}
       <header style={{ position: "fixed", top: 0, left: 0, right: 0, width: "100%", zIndex: 50, background: NAVY, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-        <div style={{ ...CONTAINER_STYLE, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "28px 0" }}>
+        <div style={{ ...CONTAINER_STYLE, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 0" }}>
           <Link href="/">
-            <img src="/logo-dark.png" alt="EvalTravaux" style={{ height: 120, width: "auto", objectFit: "contain" }} />
+            <img src="/logo-dark.png" alt="EvalTravaux" style={{ height: 115, width: "auto", objectFit: "contain" }} />
           </Link>
           <nav style={{ display: "flex", alignItems: "center", gap: 32 }}>
-            <div style={{ display: "flex", alignItems: "center", background: "rgba(255,255,255,0.1)", borderRadius: 10, padding: "18px 28px", minWidth: 300 }}>
-              <span style={{ color: "rgba(255,255,255,0.6)", marginRight: 12 }}>🔍</span>
-              <input type="search" placeholder="Rechercher..." aria-label="Rechercher" style={{ background: "transparent", border: "none", color: "#fff", fontSize: 20, outline: "none", width: "100%" }} />
+            <div style={{ display: "flex", alignItems: "center", background: "rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 20px", minWidth: 260 }}>
+              <span style={{ color: "rgba(255,255,255,0.6)", marginRight: 10 }}>🔍</span>
+              <input type="search" placeholder="Rechercher..." aria-label="Rechercher" style={{ background: "transparent", border: "none", color: "#fff", fontSize: 16, outline: "none", width: "100%" }} />
             </div>
-            <Link href="/devis/plombier/paris" style={{ color: "rgba(255,255,255,0.9)", padding: "18px 36px", borderRadius: 10, textDecoration: "none", fontSize: 22, fontWeight: 500 }}>Obtenir mes devis gratuits</Link>
-            <Link href="/login" style={{ color: "rgba(255,255,255,0.9)", padding: "18px 36px", borderRadius: 10, textDecoration: "none", fontSize: 22 }}>Connexion</Link>
-            <Link href="/register" style={{ background: ORANGE, color: WHITE, padding: "22px 48px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 22, boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>
+            <Link href="/devis/plombier/paris" style={{ color: ORANGE, padding: "14px 28px", borderRadius: 10, textDecoration: "none", fontSize: 17, fontWeight: 600 }}>Obtenir mes devis gratuits</Link>
+            <Link href="/login" style={{ color: "rgba(255,255,255,0.9)", padding: "14px 28px", borderRadius: 10, textDecoration: "none", fontSize: 17 }}>Connexion</Link>
+            <Link href="/register" style={{ background: ORANGE, color: WHITE, padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 17, boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>
               Inscription artisan
             </Link>
           </nav>
         </div>
       </header>
 
-      {/* Hero - Grid 2 colonnes */}
-      <section style={{ width: "100%", background: NAVY, paddingTop: 140, paddingBottom: 120 }}>
-        <div className="hero-grid" style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center", minHeight: 420 }}>
-          <div>
-            <h1 style={{ fontSize: "clamp(2.75rem, 5vw, 4.5rem)", fontWeight: 700, color: WHITE, margin: 0, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
+      {/* Hero - Grid 2 colonnes, proportions référence */}
+      <section style={{ width: "100%", background: NAVY, paddingTop: 180, paddingBottom: 100, overflow: "visible" }}>
+        <div className="hero-grid" style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center", minHeight: 380, overflow: "visible" }}>
+          <div style={{ overflow: "visible", minWidth: 0 }}>
+            <h1 style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)", fontWeight: 700, color: WHITE, margin: 0, lineHeight: 1.2, letterSpacing: "-0.02em", wordBreak: "break-word" }}>
               Comparez plusieurs devis travaux fiables en quelques minutes
             </h1>
-            <p style={{ fontSize: 22, color: "rgba(255,255,255,0.9)", marginTop: 28, maxWidth: 520, lineHeight: 1.6 }}>
+            <p style={{ fontSize: 18, color: "rgba(255,255,255,0.9)", marginTop: 24, maxWidth: 480, lineHeight: 1.6 }}>
               Décrivez votre projet et recevez rapidement des devis d&apos;artisans qualifiés.
             </p>
-            <Link href="/devis/plombier/paris" style={{ display: "inline-block", background: ORANGE, color: WHITE, padding: "28px 72px", borderRadius: 10, fontWeight: 600, fontSize: 26, marginTop: 40, textDecoration: "none", boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>
+            <Link href="/devis/plombier/paris" style={{ display: "inline-block", background: ORANGE, color: WHITE, padding: "20px 48px", borderRadius: 10, fontWeight: 600, fontSize: 18, marginTop: 32, textDecoration: "none", boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>
               Obtenir mes devis gratuits
             </Link>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 36, marginTop: 44, fontSize: 18, color: "rgba(255,255,255,0.85)" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 28, marginTop: 36, fontSize: 16, color: "rgba(255,255,255,0.85)" }}>
               <span>✓ Devis 100% gratuits</span>
               <span>✓ Artisans vérifiés</span>
               <span>✓ Sans engagement</span>
@@ -93,80 +93,86 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Photo2 : Comment fonctionne - pleine largeur, proportions équilibrées */}
-      <section id="comment-ca-marche" style={{ width: "100%", background: "#f8fafc", padding: "120px 0" }}>
+      {/* Comment fonctionne - proportions équilibrées */}
+      <section id="comment-ca-marche" style={{ width: "100%", background: "#f8fafc", padding: "80px 0" }}>
         <div style={{ ...CONTAINER_STYLE, width: "100%" }}>
-          <h2 style={{ textAlign: "center", fontSize: "clamp(2rem, 4vw, 2.75rem)", fontWeight: 700, color: "#0f172a", margin: 0 }}>
+          <h2 style={{ textAlign: "center", fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 700, color: "#0f172a", margin: 0 }}>
             Comment fonctionne EvalTravaux ?
           </h2>
-          <p style={{ textAlign: "center", color: "#475569", marginTop: 28, fontSize: 21 }}>
+          <p style={{ textAlign: "center", color: "#475569", marginTop: 16, fontSize: 17 }}>
             Un parcours simple en 3 étapes pour obtenir des devis comparables.
           </p>
-          <div className="steps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 48, marginTop: 80, width: "100%" }}>
+          <div className="steps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32, marginTop: 56, width: "100%" }}>
             {STEPS.map((s) => (
-              <div key={s.num} style={{ background: WHITE, borderRadius: 28, padding: "64px 48px", boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)", minHeight: 320, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
-                <div style={{ width: 96, height: 96, borderRadius: "50%", background: NAVY, color: WHITE, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 40, marginBottom: 32 }}>{s.num}</div>
-                <h3 style={{ fontSize: 26, fontWeight: 600, margin: 0, lineHeight: 1.3 }}>{s.title}</h3>
-                <p style={{ color: "#475569", marginTop: 24, fontSize: 18, lineHeight: 1.7, flex: 1 }}>{s.desc}</p>
+              <div key={s.num} style={{ background: WHITE, borderRadius: 20, padding: "40px 32px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", minHeight: 260, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+                <div style={{ width: 72, height: 72, borderRadius: "50%", background: NAVY, color: WHITE, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 32, marginBottom: 24 }}>{s.num}</div>
+                <h3 style={{ fontSize: 20, fontWeight: 600, margin: 0, lineHeight: 1.3 }}>{s.title}</h3>
+                <p style={{ color: "#475569", marginTop: 16, fontSize: 15, lineHeight: 1.6, flex: 1 }}>{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Photo1 : Vos besoins - centré, modules agrandis */}
-      <section style={{ width: "100%", background: WHITE, padding: "100px 0 120px" }}>
-        <div style={{ ...CONTAINER_STYLE, width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)", fontWeight: 700, margin: 0, textAlign: "center" }}>Vos besoins, notre expertise</h2>
-          <p style={{ color: "#475569", marginTop: 24, fontSize: 22, textAlign: "center" }}>Choisissez le type de travaux.</p>
-          <div className="needs-services" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 48, marginTop: 72, width: "100%", maxWidth: 1200, marginLeft: "auto", marginRight: "auto" }}>
-            {WORK_CATEGORIES.map((cat) => (
-              <Link key={cat.label} href={`/devis/${cat.slug}/paris`} className="card-work" style={{ background: WHITE, border: "1px solid #e2e8f0", borderRadius: 28, padding: 56, textDecoration: "none", color: "inherit", display: "flex", alignItems: "center", gap: 36, boxShadow: "0 4px 20px rgba(0,0,0,0.06)", minHeight: 280 }}>
-                <div style={{ width: 120, height: 120, borderRadius: 24, background: "rgba(15,43,70,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 56, flexShrink: 0 }}>{cat.icon}</div>
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ margin: 0, fontWeight: 600, fontSize: 28 }}>{cat.label}</h3>
-                  <p style={{ marginTop: 14, fontSize: 20, color: "#64748b", lineHeight: 1.5 }}>{cat.desc}</p>
+      {/* Vos besoins - Layout référence : grille gauche (2x3) + carte projet droite */}
+      <section style={{ width: "100%", background: WHITE, padding: "80px 0 100px" }}>
+        <div style={{ ...CONTAINER_STYLE, width: "100%" }}>
+          <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 700, margin: 0 }}>Vos besoins, notre expertise</h2>
+          <p style={{ color: "#475569", marginTop: 12, fontSize: 17 }}>Choisissez le type de travaux.</p>
+          <div className="needs-section-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, marginTop: 48, alignItems: "stretch" }}>
+            {/* Grille 6 catégories - 2 colonnes x 3 lignes */}
+            <div className="needs-services" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }}>
+              {WORK_CATEGORIES.map((cat) => (
+                <Link key={cat.label} href={`/devis/${cat.slug}/paris`} className="card-work" style={{ background: WHITE, border: "1px solid #e2e8f0", borderRadius: 16, padding: 24, textDecoration: "none", color: "inherit", display: "flex", alignItems: "center", gap: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.04)", minHeight: 100 }}>
+                  <div style={{ width: 52, height: 52, borderRadius: 12, background: "rgba(15,43,70,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, flexShrink: 0 }}>{cat.icon}</div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <h3 style={{ margin: 0, fontWeight: 600, fontSize: 17 }}>{cat.label}</h3>
+                    <p style={{ marginTop: 6, fontSize: 14, color: "#64748b", lineHeight: 1.4 }}>{cat.desc}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            {/* Carte projet mise en avant - droite */}
+            <div style={{ background: WHITE, border: "1px solid #e2e8f0", borderRadius: 20, overflow: "hidden", boxShadow: "0 8px 24px rgba(0,0,0,0.08)", display: "flex", flexDirection: "column" }}>
+              <div style={{ width: "100%", height: 200, background: "linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%)" }} />
+              <div style={{ padding: 32, flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <div>
+                  <h3 style={{ fontWeight: 600, fontSize: 22, margin: 0 }}>Rénovation appartement complet</h3>
+                  <p style={{ color: "#475569", marginTop: 12, fontSize: 17 }}>De 25 000 € à 40 000 €</p>
                 </div>
-              </Link>
-            ))}
-          </div>
-          <div style={{ width: "100%", background: WHITE, border: "1px solid #e2e8f0", borderRadius: 28, overflow: "hidden", boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1)", marginTop: 56 }}>
-            <div style={{ width: "100%", height: 240, background: "linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%)" }} />
-            <div style={{ padding: 48 }}>
-              <h3 style={{ fontWeight: 600, fontSize: 28, margin: 0 }}>Rénovation appartement complet</h3>
-              <p style={{ color: "#475569", marginTop: 20, fontSize: 22 }}>De 25 000 € à 40 000 €</p>
-              <Link href="/devis/renovation/paris" style={{ display: "inline-block", background: NAVY, color: WHITE, padding: "28px 56px", borderRadius: 14, fontWeight: 600, fontSize: 26, marginTop: 32, textDecoration: "none" }}>
-                Voir le projet
-              </Link>
+                <Link href="/devis/renovation/paris" style={{ display: "inline-block", background: NAVY, color: WHITE, padding: "16px 32px", borderRadius: 12, fontWeight: 600, fontSize: 17, marginTop: 24, textDecoration: "none", alignSelf: "flex-start" }}>
+                  Voir le projet
+                </Link>
+              </div>
             </div>
           </div>
-          <div style={{ textAlign: "center", marginTop: 72 }}>
-            <Link href="/devis/plombier/paris" style={{ display: "inline-block", background: ORANGE, color: WHITE, padding: "32px 96px", borderRadius: 14, fontWeight: 600, fontSize: 28, textDecoration: "none", boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>
+          <div style={{ textAlign: "center", marginTop: 56 }}>
+            <Link href="/devis/plombier/paris" style={{ display: "inline-block", background: ORANGE, color: WHITE, padding: "20px 56px", borderRadius: 12, fontWeight: 600, fontSize: 17, textDecoration: "none", boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>
               Découvrir nos domaines →
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Pourquoi utiliser EvalTravaux - Avantages plus grands */}
-      <section style={{ width: "100%", padding: "100px 0" }}>
+      {/* Pourquoi utiliser EvalTravaux */}
+      <section style={{ width: "100%", padding: "80px 0" }}>
         <div style={CONTAINER_STYLE}>
-          <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)", fontWeight: 700, margin: 0 }}>Pourquoi utiliser EvalTravaux ?</h2>
-          <p style={{ color: "#475569", marginTop: 24, fontSize: 20 }}>Des avantages concrets pour simplifier vos projets.</p>
-          <div className="advantages-cta-grid" style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: 64, marginTop: 72, alignItems: "stretch" }}>
-            <div className="advantages-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }}>
+          <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 700, margin: 0 }}>Pourquoi utiliser EvalTravaux ?</h2>
+          <p style={{ color: "#475569", marginTop: 12, fontSize: 17 }}>Des avantages concrets pour simplifier vos projets.</p>
+          <div className="advantages-cta-grid" style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: 48, marginTop: 48, alignItems: "stretch" }}>
+            <div className="advantages-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24 }}>
               {ADVANTAGES.map((adv) => (
-                <div key={adv.title} style={{ background: WHITE, border: "1px solid #e2e8f0", borderRadius: 24, padding: 48, boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}>
-                  <div style={{ width: 72, height: 72, borderRadius: 20, background: "rgba(15,43,70,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, color: NAVY, fontSize: 32 }}>{adv.icon}</div>
-                  <h3 style={{ marginTop: 28, fontWeight: 600, fontSize: 24 }}>{adv.title}</h3>
-                  <p style={{ marginTop: 16, fontSize: 18, color: "#475569", lineHeight: 1.6 }}>{adv.desc}</p>
+                <div key={adv.title} style={{ background: WHITE, border: "1px solid #e2e8f0", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
+                  <div style={{ width: 56, height: 56, borderRadius: 14, background: "rgba(15,43,70,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, color: NAVY, fontSize: 24 }}>{adv.icon}</div>
+                  <h3 style={{ marginTop: 20, fontWeight: 600, fontSize: 18 }}>{adv.title}</h3>
+                  <p style={{ marginTop: 12, fontSize: 15, color: "#475569", lineHeight: 1.5 }}>{adv.desc}</p>
                 </div>
               ))}
             </div>
-            <div style={{ background: ORANGE, borderRadius: 24, padding: 64, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
-              <h3 style={{ fontSize: "clamp(1.4rem, 2vw, 1.75rem)", fontWeight: 700, color: WHITE, margin: 0 }}>Recevez vos devis travaux gratuitement</h3>
-              <p style={{ color: "rgba(255,255,255,0.95)", marginTop: 24, fontSize: 19, lineHeight: 1.6 }}>Décrivez votre projet et recevez rapidement des devis comparables.</p>
-              <Link href="/devis/plombier/paris" style={{ display: "inline-block", background: WHITE, color: ORANGE, padding: "28px 64px", borderRadius: 12, fontWeight: 600, fontSize: 26, marginTop: 40, textDecoration: "none", boxShadow: "0 4px 14px rgba(0,0,0,0.15)" }}>
+            <div style={{ background: ORANGE, borderRadius: 20, padding: 48, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+              <h3 style={{ fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)", fontWeight: 700, color: WHITE, margin: 0 }}>Recevez vos devis travaux gratuitement</h3>
+              <p style={{ color: "rgba(255,255,255,0.95)", marginTop: 16, fontSize: 16, lineHeight: 1.5 }}>Décrivez votre projet et recevez rapidement des devis comparables.</p>
+              <Link href="/devis/plombier/paris" style={{ display: "inline-block", background: WHITE, color: ORANGE, padding: "18px 40px", borderRadius: 12, fontWeight: 600, fontSize: 17, marginTop: 28, textDecoration: "none", boxShadow: "0 4px 14px rgba(0,0,0,0.15)" }}>
                 Obtenir mes devis
               </Link>
             </div>
@@ -174,16 +180,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Final - Bloc pleine largeur */}
-      <section style={{ width: "100%", padding: "0 0 100px" }}>
+      {/* CTA Final */}
+      <section style={{ width: "100%", padding: "0 0 80px" }}>
         <div style={CONTAINER_STYLE}>
-          <div className="cta-final-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, borderRadius: 20, overflow: "hidden", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)" }}>
-            <div style={{ background: NAVY, padding: 72, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-              <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 700, color: WHITE, margin: 0 }}>Recevez vos devis travaux gratuitement</h2>
-              <p style={{ color: "rgba(255,255,255,0.9)", marginTop: 24, fontSize: 19, lineHeight: 1.65 }}>Décrivez votre projet et recevez rapidement des devis comparables.</p>
+          <div className="cta-final-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, borderRadius: 16, overflow: "hidden", boxShadow: "0 8px 32px rgba(0,0,0,0.12)" }}>
+            <div style={{ background: NAVY, padding: 56, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+              <h2 style={{ fontSize: "clamp(1.4rem, 2.5vw, 1.75rem)", fontWeight: 700, color: WHITE, margin: 0 }}>Recevez vos devis travaux gratuitement</h2>
+              <p style={{ color: "rgba(255,255,255,0.9)", marginTop: 16, fontSize: 16, lineHeight: 1.5 }}>Décrivez votre projet et recevez rapidement des devis comparables.</p>
             </div>
-            <div style={{ background: ORANGE, padding: 72, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
-              <Link href="/devis/plombier/paris" style={{ display: "inline-block", background: WHITE, color: ORANGE, padding: "28px 72px", borderRadius: 10, fontWeight: 600, fontSize: 26, textDecoration: "none", boxShadow: "0 4px 14px rgba(0,0,0,0.15)" }}>
+            <div style={{ background: ORANGE, padding: 56, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+              <Link href="/devis/plombier/paris" style={{ display: "inline-block", background: WHITE, color: ORANGE, padding: "18px 48px", borderRadius: 10, fontWeight: 600, fontSize: 17, textDecoration: "none", boxShadow: "0 4px 14px rgba(0,0,0,0.15)" }}>
                 Obtenir mes devis
               </Link>
             </div>
@@ -192,28 +198,28 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer style={{ width: "100%", background: NAVY, color: WHITE, padding: "80px 0 40px" }}>
-        <div style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 72 }}>
+      <footer style={{ width: "100%", background: NAVY, color: WHITE, padding: "64px 0 32px" }}>
+        <div style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 56 }}>
           <div>
-            <h4 style={{ fontWeight: 600, margin: 0, fontSize: 22 }}>EvalTravaux</h4>
-            <ul style={{ listStyle: "none", padding: 0, marginTop: 32 }}>
-              <li style={{ marginBottom: 18 }}><Link href="#comment-ca-marche" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 22 }}>Comment ça marche</Link></li>
-              <li style={{ marginBottom: 18 }}><Link href="/contact" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 22 }}>Contact</Link></li>
+            <h4 style={{ fontWeight: 600, margin: 0, fontSize: 18 }}>EvalTravaux</h4>
+            <ul style={{ listStyle: "none", padding: 0, marginTop: 24 }}>
+              <li style={{ marginBottom: 14 }}><Link href="#comment-ca-marche" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 15 }}>Comment ça marche</Link></li>
+              <li style={{ marginBottom: 14 }}><Link href="/contact" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 15 }}>Contact</Link></li>
             </ul>
           </div>
           <div>
-            <h4 style={{ fontWeight: 600, margin: 0, fontSize: 22 }}>Travaux</h4>
-            <ul style={{ listStyle: "none", padding: 0, marginTop: 32 }}>
-              <li style={{ marginBottom: 18 }}><Link href="/devis/plombier/paris" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 22 }}>Plomberie</Link></li>
-              <li style={{ marginBottom: 18 }}><Link href="/devis/renovation/paris" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 22 }}>Rénovation</Link></li>
-              <li style={{ marginBottom: 18 }}><Link href="/devis/menuisier/paris" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 22 }}>Cuisine</Link></li>
+            <h4 style={{ fontWeight: 600, margin: 0, fontSize: 18 }}>Travaux</h4>
+            <ul style={{ listStyle: "none", padding: 0, marginTop: 24 }}>
+              <li style={{ marginBottom: 14 }}><Link href="/devis/plombier/paris" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 15 }}>Plomberie</Link></li>
+              <li style={{ marginBottom: 14 }}><Link href="/devis/renovation/paris" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 15 }}>Rénovation</Link></li>
+              <li style={{ marginBottom: 14 }}><Link href="/devis/menuisier/paris" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 15 }}>Cuisine</Link></li>
             </ul>
           </div>
           <div>
-            <h4 style={{ fontWeight: 600, margin: 0, fontSize: 22 }}>Légal</h4>
-            <ul style={{ listStyle: "none", padding: 0, marginTop: 32 }}>
-              <li style={{ marginBottom: 18 }}><Link href="/mentions-legales" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 22 }}>Mentions légales</Link></li>
-              <li style={{ marginBottom: 18 }}><Link href="/politique-confidentialite" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 22 }}>Politique de confidentialité</Link></li>
+            <h4 style={{ fontWeight: 600, margin: 0, fontSize: 18 }}>Légal</h4>
+            <ul style={{ listStyle: "none", padding: 0, marginTop: 24 }}>
+              <li style={{ marginBottom: 14 }}><Link href="/mentions-legales" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 15 }}>Mentions légales</Link></li>
+              <li style={{ marginBottom: 14 }}><Link href="/politique-confidentialite" style={{ color: "#94a3b8", textDecoration: "none", fontSize: 15 }}>Politique de confidentialité</Link></li>
             </ul>
           </div>
         </div>

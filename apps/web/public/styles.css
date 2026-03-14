@@ -232,14 +232,16 @@ a { text-decoration: none; color: inherit; }
   border-color: rgba(255,140,0,0.3) !important;
 }
 
-/* FULL DESKTOP - Grilles horizontales maintenues jusqu'à 768px */
+/* Responsive - Grilles */
 @media (max-width: 1024px) {
   .needs-services { grid-template-columns: repeat(2, 1fr) !important; }
+  .needs-section-grid { grid-template-columns: 1fr !important; }
 }
 @media (max-width: 768px) {
   .hero-grid { grid-template-columns: 1fr !important; }
   .steps-grid { grid-template-columns: 1fr !important; }
   .needs-services { grid-template-columns: repeat(2, 1fr) !important; }
+  .needs-section-grid { grid-template-columns: 1fr !important; }
   .advantages-cta-grid { grid-template-columns: 1fr !important; }
   .advantages-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .cta-final-grid { grid-template-columns: 1fr !important; }
