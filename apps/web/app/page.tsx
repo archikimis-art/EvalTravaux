@@ -65,15 +65,15 @@ export default function HomePage() {
 
       {/* Hero - Grid 2 colonnes, proportions référence */}
       <section style={{ width: "100%", background: NAVY, paddingTop: 520, paddingBottom: 72, overflow: "visible" }}>
-        <div className="content-centered hero-grid" style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 48, alignItems: "center", minHeight: 320, overflow: "visible" }}>
-          <div style={{ overflow: "visible", minWidth: 0 }}>
-            <h1 style={{ fontSize: "clamp(1.4rem, 2.2vw, 1.9rem)", fontWeight: 700, color: WHITE, margin: 0, lineHeight: 1.3, letterSpacing: "-0.02em", wordBreak: "break-word" }}>
-              Comparez plusieurs devis travaux fiables.<br />Faites votre demande en quelques minutes.
+        <div className="content-centered hero-grid" style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "stretch", minHeight: 400, overflow: "visible" }}>
+          <div style={{ overflow: "visible", minWidth: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <h1 style={{ fontSize: "clamp(1.65rem, 2.6vw, 2.15rem)", fontWeight: 700, color: WHITE, margin: 0, lineHeight: 1.4, letterSpacing: "-0.02em", wordBreak: "break-word" }}>
+              Comparez plusieurs devis<br />travaux fiables<br />Faites votre demande<br />en quelques minutes.
             </h1>
-            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.9)", marginTop: 14, maxWidth: 420, lineHeight: 1.5 }}>
+            <p style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", marginTop: 28, maxWidth: 440, lineHeight: 1.5 }}>
               Décrivez votre projet et recevez rapidement des devis d&apos;artisans qualifiés.
             </p>
-            <Link href="/devis/plombier" style={{ display: "inline-block", background: ORANGE, color: WHITE, padding: "14px 32px", borderRadius: 10, fontWeight: 600, fontSize: 15, marginTop: 20, textDecoration: "none", boxShadow: "0 4px 14px rgba(255,140,0,0.4)", whiteSpace: "nowrap" }}>
+            <Link href="/devis/plombier" style={{ display: "inline-block", background: ORANGE, color: WHITE, padding: "14px 32px", borderRadius: 10, fontWeight: 600, fontSize: 15, marginTop: 36, textDecoration: "none", boxShadow: "0 4px 14px rgba(255,140,0,0.4)", whiteSpace: "nowrap" }}>
               Obtenir mes devis gratuits
             </Link>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 18, marginTop: 22, fontSize: 14, color: "rgba(255,255,255,0.85)" }}>
@@ -82,8 +82,8 @@ export default function HomePage() {
               <span>✓ Sans engagement</span>
             </div>
           </div>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", position: "relative", borderRadius: 16, overflow: "hidden", maxWidth: 380 }}>
-            <img src="/images/Photos_travaux2.png" alt="Travaux intérieurs - rénovation" style={{ width: "100%", height: 280, objectFit: "cover", display: "block" }} />
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", position: "relative", borderRadius: 16, overflow: "hidden", maxWidth: 520 }}>
+            <img src="/images/Photos_travaux2.png" alt="Travaux intérieurs - rénovation" style={{ width: "100%", height: 400, objectFit: "cover", display: "block" }} />
             <div style={{ position: "absolute", inset: 0, background: `linear-gradient(135deg, ${NAVY}88 0%, ${NAVY}cc 50%, transparent 100%)`, pointerEvents: "none" }} />
             <div style={{ position: "absolute", bottom: 24, left: 24, right: 24, display: "flex", alignItems: "center", gap: 12, pointerEvents: "none" }}>
               <div style={{ width: 56, height: 56, borderRadius: "50%", background: ORANGE, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
