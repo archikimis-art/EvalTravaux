@@ -3,7 +3,7 @@
   --brand-navy: #0f2b46;
   --brand-orange: #ff8c00;
   --brand-orange-hover: #e66d00;
-  --container: 1200px;
+  --container: 1440px;
 }
 
 * { box-sizing: border-box; }
@@ -183,6 +183,20 @@ a { text-decoration: none; color: inherit; }
 .card-work:hover {
   box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
   border-color: rgba(255,140,0,0.3) !important;
+}
+
+/* Desktop Premium - responsive */
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr !important; }
+  .steps-grid { grid-template-columns: 1fr !important; }
+  .needs-grid { grid-template-columns: 1fr !important; }
+  .needs-services { grid-template-columns: repeat(2, 1fr) !important; }
+  .advantages-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .cta-final-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 640px) {
+  .needs-services { grid-template-columns: 1fr !important; }
+  .advantages-grid { grid-template-columns: 1fr !important; }
 }
 
 /* Hide on mobile */
