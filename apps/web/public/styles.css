@@ -3,27 +3,42 @@
   --brand-navy: #0f2b46;
   --brand-orange: #ff8c00;
   --brand-orange-hover: #e66d00;
-  --container: 1440px;
+  --container: 100%;
+  --min-width-pc: 1280px;
 }
 
 * { box-sizing: border-box; }
 
-/* Configuration Desktop PC - interface et écran PC web */
-html {
-  min-width: var(--min-width-pc);
+/* FULL DESKTOP - Briser le mode mobile, forcer pleine largeur */
+html, body {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
   overflow-x: auto;
 }
 body {
-  margin: 0;
   min-height: 100vh;
-  min-width: var(--min-width-pc);
   font-family: 'Poppins', system-ui, sans-serif;
   background: #fff;
   color: #0f172a;
   -webkit-font-smoothing: antialiased;
 }
-.layout-desktop-pc {
-  min-width: var(--min-width-pc);
+.layout-desktop-pc,
+#__next,
+main {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+}
+/* Container principal - max 1440px mais largeur pleine jusqu'à ce seuil */
+.page-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 48px;
+  padding-right: 48px;
 }
 
 /* Champ recherche header */
@@ -207,12 +222,13 @@ a { text-decoration: none; color: inherit; }
   border-color: rgba(255,140,0,0.3) !important;
 }
 
-/* Desktop Premium - breakpoints élevés pour garder layout horizontal */
-@media (max-width: 900px) {
+/* FULL DESKTOP - Grilles horizontales maintenues jusqu'à 768px */
+@media (max-width: 768px) {
   .hero-grid { grid-template-columns: 1fr !important; }
+  .steps-needs-combined { grid-template-columns: 1fr !important; }
   .steps-grid { grid-template-columns: 1fr !important; }
-  .needs-grid { grid-template-columns: 1fr !important; }
   .needs-services { grid-template-columns: repeat(2, 1fr) !important; }
+  .advantages-cta-grid { grid-template-columns: 1fr !important; }
   .advantages-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .cta-final-grid { grid-template-columns: 1fr !important; }
 }

@@ -3,11 +3,10 @@ import Link from "next/link";
 const NAVY = "#0f2b46";
 const ORANGE = "#ff8c00";
 const WHITE = "#ffffff";
-const PX = 80; // px-20 équivalent (80px)
-const PX_LG = 120; // padding horizontal généreux
+const PX = 48; // Padding latéral réduit pour maximiser la largeur utile
 const CONTAINER_STYLE = {
   width: "100%",
-  maxWidth: 1440,
+  maxWidth: "min(1440px, 100%)",
   margin: "0 auto",
   paddingLeft: PX,
   paddingRight: PX,
@@ -37,9 +36,9 @@ const STEPS = [
 
 export default function HomePage() {
   return (
-    <main className="layout-desktop-pc" style={{ minHeight: "100vh", background: WHITE, color: "#0f172a", fontFamily: "'Poppins', system-ui, sans-serif" }}>
+    <main className="layout-desktop-pc" style={{ width: "100%", maxWidth: "100%", minHeight: "100vh", background: WHITE, color: "#0f172a", fontFamily: "'Poppins', system-ui, sans-serif" }}>
       {/* Header - Logo gauche, CTA droite */}
-      <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, background: NAVY, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+      <header style={{ position: "fixed", top: 0, left: 0, right: 0, width: "100%", zIndex: 50, background: NAVY, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
         <div style={{ ...CONTAINER_STYLE, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "24px 0" }}>
           <Link href="/">
             <img src="/logo-dark.png" alt="EvalTravaux" style={{ height: 64, width: "auto", objectFit: "contain" }} />
@@ -59,7 +58,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero - Grid 2 colonnes */}
-      <section style={{ background: NAVY, paddingTop: 140, paddingBottom: 120 }}>
+      <section style={{ width: "100%", background: NAVY, paddingTop: 140, paddingBottom: 120 }}>
         <div className="hero-grid" style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center", minHeight: 400 }}>
           <div>
             <h1 style={{ fontSize: "clamp(2.75rem, 5vw, 4.5rem)", fontWeight: 700, color: WHITE, margin: 0, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
@@ -150,7 +149,7 @@ export default function HomePage() {
       </section>
 
       {/* Pourquoi utiliser EvalTravaux - Avantages à gauche, CTA orange à droite (comme l'exemple) */}
-      <section style={{ padding: "96px 0" }}>
+      <section style={{ width: "100%", padding: "96px 0" }}>
         <div style={CONTAINER_STYLE}>
           <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)", fontWeight: 700, margin: 0 }}>Pourquoi utiliser EvalTravaux ?</h2>
           <p style={{ color: "#475569", marginTop: 20, fontSize: 18 }}>Des avantages concrets pour simplifier vos projets.</p>
@@ -176,7 +175,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Final - Bloc bleu/orange pleine largeur */}
-      <section style={{ padding: "0 0 96px" }}>
+      <section style={{ width: "100%", padding: "0 0 96px" }}>
         <div style={CONTAINER_STYLE}>
           <div className="cta-final-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, borderRadius: 16, overflow: "hidden", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)" }}>
             <div style={{ background: NAVY, padding: 64, display: "flex", flexDirection: "column", justifyContent: "center" }}>
@@ -193,7 +192,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer style={{ background: NAVY, color: WHITE, padding: "80px 0 40px" }}>
+      <footer style={{ width: "100%", background: NAVY, color: WHITE, padding: "80px 0 40px" }}>
         <div style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 64 }}>
           <div>
             <h4 style={{ fontWeight: 600, margin: 0, fontSize: 18 }}>EvalTravaux</h4>

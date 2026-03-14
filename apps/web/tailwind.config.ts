@@ -36,7 +36,7 @@ const config: Config = {
         sans: ["system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
       },
       maxWidth: {
-        container: "1200px",
+        container: "1440px",
       },
     },
   },
