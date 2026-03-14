@@ -41,16 +41,16 @@ export default function HomePage() {
       <header style={{ position: "fixed", top: 0, left: 0, right: 0, width: "100%", zIndex: 50, background: NAVY, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
         <div className="content-centered" style={{ ...CONTAINER_STYLE, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "24px 0" }}>
           <Link href="/">
-            <img src="/logo-dark.png" alt="EvalTravaux" style={{ height: 460, width: "auto", objectFit: "contain" }} />
+            <img src="/logo-dark.png" alt="EvalTravaux" style={{ height: 230, width: "auto", objectFit: "contain" }} />
           </Link>
           <nav style={{ display: "flex", alignItems: "center", gap: 32 }}>
             <div style={{ display: "flex", alignItems: "center", background: "rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 20px", minWidth: 260 }}>
               <span style={{ color: "rgba(255,255,255,0.6)", marginRight: 10 }}>🔍</span>
               <input type="search" placeholder="Rechercher..." aria-label="Rechercher" style={{ background: "transparent", border: "none", color: "#fff", fontSize: 16, outline: "none", width: "100%" }} />
             </div>
-            <Link href="/devis/plombier" style={{ color: ORANGE, padding: "14px 28px", borderRadius: 10, textDecoration: "none", fontSize: 17, fontWeight: 600 }}>Obtenir mes devis gratuits</Link>
+            <Link href="/devis/plombier" style={{ background: ORANGE, color: WHITE, padding: "14px 28px", borderRadius: 10, textDecoration: "none", fontSize: 17, fontWeight: 600, boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>Obtenir mes devis gratuits</Link>
             <Link href="/login" style={{ color: "rgba(255,255,255,0.9)", padding: "14px 28px", borderRadius: 10, textDecoration: "none", fontSize: 17 }}>Connexion</Link>
-            <Link href="/register" style={{ background: ORANGE, color: WHITE, padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 17, boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>
+            <Link href="/pro/inscription" style={{ background: ORANGE, color: WHITE, padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 17, boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>
               Inscription artisan
             </Link>
           </nav>
@@ -78,16 +78,69 @@ export default function HomePage() {
           </div>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
             <svg width="100%" height="380" viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: 480 }}>
-              <rect x="120" y="140" width="240" height="160" rx="12" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="2" />
-              <path d="M240 80 L360 140 L120 140 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
-              <rect x="220" y="220" width="60" height="80" fill={NAVY} opacity="0.6" />
+              {/* Fond décoratif - grille de plans */}
+              <defs>
+                <linearGradient id="houseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="rgba(255,255,255,0.2)" />
+                  <stop offset="100%" stopColor="rgba(255,255,255,0.05)" />
+                </linearGradient>
+                <linearGradient id="roofGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="rgba(255,255,255,0.25)" />
+                  <stop offset="100%" stopColor="rgba(255,255,255,0.1)" />
+                </linearGradient>
+                <filter id="softGlow">
+                  <feGaussianBlur stdDeviation="2" result="blur" />
+                  <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+              </defs>
+              {/* Plan / blueprint en arrière-plan */}
+              <rect x="50" y="50" width="140" height="100" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" strokeWidth="1" strokeDasharray="4 4" />
+              <line x1="70" y1="70" x2="170" y2="70" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+              <line x1="70" y1="90" x2="150" y2="90" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+              <rect x="70" y="100" width="50" height="40" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+              {/* Maison principale - structure détaillée */}
+              <rect x="130" y="160" width="220" height="140" rx="8" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
+              <path d="M120 160 L240 90 L360 160 Z" fill="url(#roofGrad)" stroke="rgba(255,255,255,0.35)" strokeWidth="2" />
+              {/* Tuiles du toit */}
+              <path d="M160 140 L180 130 L200 140 L220 130 L240 140 L260 130 L280 140 L300 130 L320 140" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" fill="none" />
+              <path d="M150 150 L170 142 L190 150 L210 142 L230 150 L250 142 L270 150 L290 142 L310 150 L330 142 L350 150" stroke="rgba(255,255,255,0.15)" strokeWidth="1" fill="none" />
+              {/* Cheminée */}
+              <rect x="300" y="100" width="35" height="60" rx="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+              <rect x="295" y="95" width="45" height="12" rx="2" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+              {/* Porte */}
+              <rect x="225" y="235" width="50" height="65" rx="4" fill={NAVY} opacity="0.7" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+              <circle cx="268" cy="268" r="3" fill="rgba(255,255,255,0.6)" />
+              {/* Fenêtres */}
+              <rect x="150" y="185" width="45" height="35" rx="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+              <line x1="172" y1="185" x2="172" y2="220" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+              <line x1="150" y1="202" x2="195" y2="202" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+              <rect x="285" y="185" width="45" height="35" rx="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+              <line x1="307" y1="185" x2="307" y2="220" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+              <line x1="285" y1="202" x2="330" y2="202" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+              <rect x="150" y="250" width="45" height="30" rx="3" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+              <rect x="285" y="250" width="45" height="30" rx="3" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+              {/* Badge validation - check */}
               <circle cx="380" cy="120" r="55" fill={ORANGE} opacity="0.95" />
               <path d="M362 120 L375 133 L398 108" stroke={WHITE} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <rect x="60" y="240" width="90" height="55" rx="8" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-              <circle cx="80" cy="260" r="8" fill={ORANGE} />
-              <text x="100" y="275" fill="rgba(255,255,255,0.9)" fontSize="14" fontFamily="Poppins,sans-serif">Checklist</text>
-              <ellipse cx="340" cy="280" rx="50" ry="35" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-              <path d="M310 280 L325 265 L340 280 L365 255" stroke={ORANGE} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              {/* Carte Checklist */}
+              <rect x="50" y="255" width="100" height="65" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
+              <circle cx="75" cy="278" r="10" fill={ORANGE} />
+              <path d="M70 278 L73 281 L80 272" stroke={WHITE} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              <text x="95" y="282" fill="rgba(255,255,255,0.95)" fontSize="13" fontWeight="600" fontFamily="Poppins,sans-serif">Checklist</text>
+              <line x1="60" y1="295" x2="135" y2="295" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+              <line x1="60" y1="305" x2="120" y2="305" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+              <line x1="60" y1="315" x2="110" y2="315" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+              {/* Graphique courbe */}
+              <rect x="295" y="265" width="95" height="55" rx="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+              <path d="M310 310 L330 295 L350 300 L370 275 L385 285" stroke={ORANGE} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              <text x="318" y="318" fill="rgba(255,255,255,0.6)" fontSize="10" fontFamily="Poppins,sans-serif">Devis</text>
+              {/* Outils - marteau */}
+              <g transform="translate(75, 175)">
+                <rect x="0" y="0" width="25" height="8" rx="2" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+                <rect x="8" y="-8" width="8" height="20" rx="2" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+              </g>
+              {/* Crayon / règle */}
+              <rect x="355" y="200" width="40" height="6" rx="2" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" transform="rotate(-15 375 203)" />
             </svg>
           </div>
         </div>
@@ -134,7 +187,9 @@ export default function HomePage() {
             </div>
             {/* Carte projet mise en avant - droite */}
             <div style={{ background: WHITE, border: "1px solid #e2e8f0", borderRadius: 20, overflow: "hidden", boxShadow: "0 8px 24px rgba(0,0,0,0.08)", display: "flex", flexDirection: "column" }}>
-              <div style={{ width: "100%", height: 200, background: "linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%)" }} />
+              <div style={{ width: "100%", height: 320, position: "relative", overflow: "hidden" }}>
+                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80" alt="Rénovation appartement" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
               <div style={{ padding: 32, flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <div>
                   <h3 style={{ fontWeight: 600, fontSize: 22, margin: 0 }}>Rénovation appartement complet</h3>
