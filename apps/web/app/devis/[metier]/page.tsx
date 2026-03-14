@@ -2,62 +2,49 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getDevisSlugs } from "../../../../config/seo";
-import { DevisFormWithEstimate } from "../../DevisFormWithEstimate";
+import { SEO_TRADES } from "../../../config/seo";
+import { DevisFormWithEstimate } from "../DevisFormWithEstimate";
 
 type Params = {
-  params: Promise<{ metier: string; ville: string }>;
+  params: Promise<{ metier: string }>;
 };
 
-/** ISR : revalider les pages devis toutes les heures */
+/** ISR : revalider toutes les heures */
 export const revalidate = 3600;
 
-/** Génération statique des pages devis (métiers × villes) pour le SEO. */
+/** Pages statiques pour chaque métier (sans ville fixée) */
 export function generateStaticParams() {
-  return getDevisSlugs().map((s) => {
-    const parts = s["metier-ville"].split("-");
-    const metier = parts[0] ?? "";
-    const ville = parts.slice(1).join("-") || "";
-    return { metier, ville };
-  });
+  return SEO_TRADES.map((metier) => ({ metier }));
 }
 
-function decodeSlug(metier: string, ville: string): { trade: string; city: string } | null {
-  const t = metier?.trim() || "";
-  const v = ville?.trim() || "";
-  if (!t || !v) return null;
-  return { trade: t, city: v.replace(/-/g, " ") };
+function getTradeLabel(metier: string): string | null {
+  const t = metier?.trim().toLowerCase() || "";
+  if (!t || !SEO_TRADES.includes(t as (typeof SEO_TRADES)[number])) return null;
+  return t.charAt(0).toUpperCase() + t.slice(1);
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const { metier, ville } = await params;
-  const decoded = decodeSlug(metier, ville);
-  if (!decoded) {
+  const { metier } = await params;
+  const tradeLabel = getTradeLabel(metier);
+  if (!tradeLabel) {
     return {
       title: "Demande de devis travaux – EvalTravaux",
       description: "Demandez un devis travaux et trouvez des artisans qualifiés près de chez vous.",
     };
   }
 
-  const tradeLabel = decoded.trade.charAt(0).toUpperCase() + decoded.trade.slice(1);
-  const cityLabel = decoded.city.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
-
   return {
-    title: `Devis ${tradeLabel} ${cityLabel} – EvalTravaux`,
-    description: `Demandez gratuitement des devis de ${tradeLabel.toLowerCase()} à ${cityLabel} et comparez des artisans notés par de vrais clients.`,
+    title: `Devis ${tradeLabel} – EvalTravaux`,
+    description: `Demandez gratuitement des devis de ${tradeLabel.toLowerCase()} près de chez vous. Indiquez votre ville et recevez des offres d'artisans qualifiés.`,
   };
 }
 
-export default async function SeoDevisPage({ params }: Params) {
-  const { metier, ville } = await params;
-  const decoded = decodeSlug(metier, ville);
-  if (!decoded) return notFound();
+export default async function DevisMetierPage({ params }: Params) {
+  const { metier } = await params;
+  const tradeLabel = getTradeLabel(metier);
+  if (!tradeLabel) return notFound();
 
-  const trade = decoded.trade.toLowerCase();
-  const city = decoded.city.toLowerCase().replace(/\s/g, "-");
-
-  const tradeLabel = trade.charAt(0).toUpperCase() + trade.slice(1);
-  const cityLabel = decoded.city.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
+  const trade = metier.toLowerCase();
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
@@ -67,11 +54,11 @@ export default async function SeoDevisPage({ params }: Params) {
             <Image src="/logo.png" alt="EvalTravaux" width={560} height={168} className="w-auto object-contain" style={{ height: 168 }} />
           </Link>
           <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
-            Devis {tradeLabel} à {cityLabel}
+            Devis {tradeLabel} – Indiquez votre ville
           </h1>
           <p className="text-sm text-slate-600">
-            Décrivez vos travaux, obtenez une estimation indicative grâce à l&apos;IA et recevez des devis
-            d&apos;artisans {tradeLabel.toLowerCase()} qualifiés à {cityLabel}.
+            Décrivez vos travaux et indiquez votre localisation dans le formulaire. Vous recevrez des devis
+            d&apos;artisans {tradeLabel.toLowerCase()} qualifiés près de chez vous.
           </p>
         </header>
 
@@ -79,17 +66,17 @@ export default async function SeoDevisPage({ params }: Params) {
           <div className="space-y-5">
             <article className="space-y-3">
               <h2 className="text-lg font-semibold">
-                {tradeLabel} à {cityLabel} : comment ça marche ?
+                {tradeLabel} : comment ça marche ?
               </h2>
               <p className="text-sm text-slate-600 leading-relaxed">
                 EvalTravaux vous met en relation avec des artisans{" "}
-                {tradeLabel.toLowerCase()} sélectionnés à {cityLabel}. Un seul formulaire suffit pour
-                décrire vos travaux ({tradeLabel.toLowerCase()}, surface, budget) et comparer plusieurs
+                {tradeLabel.toLowerCase()} sélectionnés dans votre zone. Un seul formulaire suffit pour
+                décrire vos travaux et indiquer votre localisation. Vous comparez ensuite plusieurs
                 devis en toute simplicité.
               </p>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Après votre demande, votre projet est transmis à un petit nombre d&apos;artisans {tradeLabel.toLowerCase()}{" "}
-                pertinents à {cityLabel}, en fonction de leur zone d&apos;intervention et de leur historique
+                Après votre demande, votre projet est transmis à des artisans {tradeLabel.toLowerCase()}{" "}
+                pertinents à proximité de chez vous, en fonction de leur zone d&apos;intervention et de leur historique
                 de qualité. Vous discutez ensuite directement avec eux pour affiner le devis.
               </p>
             </article>
@@ -98,7 +85,7 @@ export default async function SeoDevisPage({ params }: Params) {
               <h3 className="text-sm font-semibold">Prix moyens constatés</h3>
               <p className="text-xs text-slate-600">
                 Les montants ci-dessous sont indicatifs et peuvent varier selon l&apos;état du bien, les
-                matériaux choisis et l&apos;accessibilité du chantier à {cityLabel}.
+                matériaux choisis et l&apos;accessibilité du chantier.
               </p>
               <ul className="mt-2 space-y-1 text-sm text-slate-700">
                 <li>• Petits travaux de {tradeLabel.toLowerCase()} : 150 € – 800 €</li>
@@ -113,7 +100,7 @@ export default async function SeoDevisPage({ params }: Params) {
                 <li>Précisez la surface, l&apos;état existant et le niveau de finition souhaité.</li>
                 <li>Joignez des photos claires des pièces ou de la façade.</li>
                 <li>Indiquez vos contraintes de délais ou d&apos;occupation des lieux.</li>
-                <li>Indiquez si le bien se situe dans le centre de {cityLabel} ou en périphérie.</li>
+                <li>Indiquez précisément votre ville ou commune dans le formulaire.</li>
               </ul>
             </article>
 
@@ -121,18 +108,18 @@ export default async function SeoDevisPage({ params }: Params) {
               <h2 className="text-lg font-semibold">Demande de devis {tradeLabel}</h2>
               <DevisFormWithEstimate
                 tradeLabel={tradeLabel}
-                cityLabel={cityLabel}
-                defaultCity={cityLabel}
+                cityLabel=""
+                defaultCity=""
               />
             </section>
           </div>
 
           <aside className="space-y-4">
             <section className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-sm space-y-2">
-              <h2 className="text-sm font-semibold">Artisans {tradeLabel.toLowerCase()} à {cityLabel}</h2>
+              <h2 className="text-sm font-semibold">Artisans {tradeLabel.toLowerCase()} près de chez vous</h2>
               <p className="text-xs text-slate-600">
-                EvalTravaux sélectionne des artisans {tradeLabel.toLowerCase()} à {cityLabel} en
-                vérifiant leurs documents réglementaires (assurance, Kbis, RGE le cas échéant) et leurs
+                EvalTravaux sélectionne des artisans {tradeLabel.toLowerCase()} à proximité de votre localisation
+                en vérifiant leurs documents réglementaires (assurance, Kbis, RGE le cas échéant) et leurs
                 avis clients. Vous recevez uniquement des devis d&apos;entreprises réellement actives dans
                 votre zone.
               </p>
