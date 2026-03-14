@@ -1,7 +1,7 @@
 /* EvalTravaux - Styles critiques (fallback si Tailwind ne charge pas) */
 :root {
   --brand-navy: #0f2b46;
-  --brand-orange: #ff7a00;
+  --brand-orange: #ff8c00;
   --brand-orange-hover: #e66d00;
   --container: 1200px;
 }
@@ -175,6 +175,15 @@ a { text-decoration: none; color: inherit; }
 .hover\:text-brand-orange:hover { color: var(--brand-orange) !important; }
 .group:hover .group-hover\:bg-brand-orange\/10 { background-color: rgba(255,122,0,0.1) !important; }
 .group:hover .group-hover\:text-brand-orange { color: var(--brand-orange) !important; }
+
+/* Cartes Types de travaux - survol */
+.card-work {
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.card-work:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
+  border-color: rgba(255,140,0,0.3) !important;
+}
 
 /* Hide on mobile */
 .hidden { display: none; }

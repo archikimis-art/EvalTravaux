@@ -11,9 +11,12 @@ export default function RootLayout(props: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="/styles.css" />
       </head>
-      <body style={{ margin: 0, minHeight: "100vh", fontFamily: "system-ui, sans-serif" }}>
+      <body style={{ margin: 0, minHeight: "100vh", fontFamily: "'Poppins', system-ui, sans-serif" }}>
         {props.children}
       </body>
     </html>
