@@ -19,6 +19,12 @@ const WORK_CATEGORIES = [
   { label: "Salle de bain", slug: "plombier", icon: "🛁", desc: "Carrelage, douche, sanitaires" },
   { label: "Cuisine", slug: "menuisier", icon: "🍳", desc: "Aménagement, plans de travail" },
   { label: "Isolation", slug: "renovation", icon: "🧱", desc: "Thermique, phonique, combles" },
+  { label: "Toiture, terrasse", slug: "couvreur", icon: "🏠", desc: "Toit, terrasse, étanchéité" },
+  { label: "Ravalement", slug: "ravalement", icon: "🖌", desc: "Façade, ravalement de murs" },
+  { label: "Chauffage", slug: "chauffagiste", icon: "🔥", desc: "Chaudière, radiateurs, PAC" },
+  { label: "Ventilation", slug: "ventilation", icon: "💨", desc: "VMC, aération, qualité d'air" },
+  { label: "Plâtrerie", slug: "plâtrier", icon: "📐", desc: "Placo, cloisons, joints" },
+  { label: "Peinture", slug: "peintre", icon: "🖌", desc: "Murs, plafonds, finitions" },
 ];
 
 const ADVANTAGES = [
@@ -48,9 +54,9 @@ export default function HomePage() {
               <span style={{ color: "rgba(255,255,255,0.6)", marginRight: 10 }}>🔍</span>
               <input type="search" placeholder="Rechercher..." aria-label="Rechercher" style={{ background: "transparent", border: "none", color: "#fff", fontSize: 16, outline: "none", width: "100%" }} />
             </div>
-            <Link href="/devis/plombier" style={{ background: ORANGE, color: WHITE, padding: "14px 28px", borderRadius: 10, textDecoration: "none", fontSize: 17, fontWeight: 600, boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>Obtenir mes devis gratuits</Link>
-            <Link href="/login" style={{ color: "rgba(255,255,255,0.9)", padding: "14px 28px", borderRadius: 10, textDecoration: "none", fontSize: 17 }}>Connexion</Link>
-            <Link href="/pro/inscription" style={{ background: ORANGE, color: WHITE, padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 17, boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>
+            <Link href="/devis/plombier" style={{ background: ORANGE, color: WHITE, padding: "14px 24px", borderRadius: 10, textDecoration: "none", fontSize: 15, fontWeight: 600, boxShadow: "0 4px 14px rgba(255,140,0,0.4)", whiteSpace: "nowrap", textAlign: "center" }}>Obtenir mes devis gratuits</Link>
+            <Link href="/login" style={{ color: "rgba(255,255,255,0.9)", padding: "14px 24px", borderRadius: 10, textDecoration: "none", fontSize: 15, whiteSpace: "nowrap" }}>Connexion</Link>
+            <Link href="/pro/inscription" style={{ background: ORANGE, color: WHITE, padding: "14px 24px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 15, boxShadow: "0 4px 14px rgba(255,140,0,0.4)", whiteSpace: "nowrap", textAlign: "center" }}>
               Inscription artisan
             </Link>
           </nav>
@@ -58,90 +64,36 @@ export default function HomePage() {
       </header>
 
       {/* Hero - Grid 2 colonnes, proportions référence */}
-      <section style={{ width: "100%", background: NAVY, paddingTop: 540, paddingBottom: 100, overflow: "visible" }}>
-        <div className="content-centered hero-grid" style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center", minHeight: 380, overflow: "visible" }}>
+      <section style={{ width: "100%", background: NAVY, paddingTop: 520, paddingBottom: 72, overflow: "visible" }}>
+        <div className="content-centered hero-grid" style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center", minHeight: 320, overflow: "visible" }}>
           <div style={{ overflow: "visible", minWidth: 0 }}>
-            <h1 style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)", fontWeight: 700, color: WHITE, margin: 0, lineHeight: 1.2, letterSpacing: "-0.02em", wordBreak: "break-word" }}>
+            <h1 style={{ fontSize: "clamp(1.4rem, 2.2vw, 1.9rem)", fontWeight: 700, color: WHITE, margin: 0, lineHeight: 1.25, letterSpacing: "-0.02em", wordBreak: "break-word" }}>
               Comparez plusieurs devis travaux fiables en quelques minutes
             </h1>
-            <p style={{ fontSize: 18, color: "rgba(255,255,255,0.9)", marginTop: 24, maxWidth: 480, lineHeight: 1.6 }}>
+            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.9)", marginTop: 14, maxWidth: 420, lineHeight: 1.5 }}>
               Décrivez votre projet et recevez rapidement des devis d&apos;artisans qualifiés.
             </p>
-            <Link href="/devis/plombier" style={{ display: "inline-block", background: ORANGE, color: WHITE, padding: "20px 48px", borderRadius: 10, fontWeight: 600, fontSize: 18, marginTop: 32, textDecoration: "none", boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>
+            <Link href="/devis/plombier" style={{ display: "inline-block", background: ORANGE, color: WHITE, padding: "14px 32px", borderRadius: 10, fontWeight: 600, fontSize: 15, marginTop: 20, textDecoration: "none", boxShadow: "0 4px 14px rgba(255,140,0,0.4)", whiteSpace: "nowrap" }}>
               Obtenir mes devis gratuits
             </Link>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 28, marginTop: 36, fontSize: 16, color: "rgba(255,255,255,0.85)" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 18, marginTop: 22, fontSize: 14, color: "rgba(255,255,255,0.85)" }}>
               <span>✓ Devis 100% gratuits</span>
               <span>✓ Artisans vérifiés</span>
               <span>✓ Sans engagement</span>
             </div>
           </div>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg width="100%" height="380" viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: 480 }}>
-              {/* Fond décoratif - grille de plans */}
-              <defs>
-                <linearGradient id="houseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="rgba(255,255,255,0.2)" />
-                  <stop offset="100%" stopColor="rgba(255,255,255,0.05)" />
-                </linearGradient>
-                <linearGradient id="roofGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="rgba(255,255,255,0.25)" />
-                  <stop offset="100%" stopColor="rgba(255,255,255,0.1)" />
-                </linearGradient>
-                <filter id="softGlow">
-                  <feGaussianBlur stdDeviation="2" result="blur" />
-                  <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              {/* Plan / blueprint en arrière-plan */}
-              <rect x="50" y="50" width="140" height="100" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" strokeWidth="1" strokeDasharray="4 4" />
-              <line x1="70" y1="70" x2="170" y2="70" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
-              <line x1="70" y1="90" x2="150" y2="90" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-              <rect x="70" y="100" width="50" height="40" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
-              {/* Maison principale - structure détaillée */}
-              <rect x="130" y="160" width="220" height="140" rx="8" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
-              <path d="M120 160 L240 90 L360 160 Z" fill="url(#roofGrad)" stroke="rgba(255,255,255,0.35)" strokeWidth="2" />
-              {/* Tuiles du toit */}
-              <path d="M160 140 L180 130 L200 140 L220 130 L240 140 L260 130 L280 140 L300 130 L320 140" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" fill="none" />
-              <path d="M150 150 L170 142 L190 150 L210 142 L230 150 L250 142 L270 150 L290 142 L310 150 L330 142 L350 150" stroke="rgba(255,255,255,0.15)" strokeWidth="1" fill="none" />
-              {/* Cheminée */}
-              <rect x="300" y="100" width="35" height="60" rx="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-              <rect x="295" y="95" width="45" height="12" rx="2" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-              {/* Porte */}
-              <rect x="225" y="235" width="50" height="65" rx="4" fill={NAVY} opacity="0.7" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
-              <circle cx="268" cy="268" r="3" fill="rgba(255,255,255,0.6)" />
-              {/* Fenêtres */}
-              <rect x="150" y="185" width="45" height="35" rx="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
-              <line x1="172" y1="185" x2="172" y2="220" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-              <line x1="150" y1="202" x2="195" y2="202" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-              <rect x="285" y="185" width="45" height="35" rx="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
-              <line x1="307" y1="185" x2="307" y2="220" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-              <line x1="285" y1="202" x2="330" y2="202" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-              <rect x="150" y="250" width="45" height="30" rx="3" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-              <rect x="285" y="250" width="45" height="30" rx="3" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-              {/* Badge validation - check */}
-              <circle cx="380" cy="120" r="55" fill={ORANGE} opacity="0.95" />
-              <path d="M362 120 L375 133 L398 108" stroke={WHITE} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              {/* Carte Checklist */}
-              <rect x="50" y="255" width="100" height="65" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
-              <circle cx="75" cy="278" r="10" fill={ORANGE} />
-              <path d="M70 278 L73 281 L80 272" stroke={WHITE} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <text x="95" y="282" fill="rgba(255,255,255,0.95)" fontSize="13" fontWeight="600" fontFamily="Poppins,sans-serif">Checklist</text>
-              <line x1="60" y1="295" x2="135" y2="295" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-              <line x1="60" y1="305" x2="120" y2="305" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-              <line x1="60" y1="315" x2="110" y2="315" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-              {/* Graphique courbe */}
-              <rect x="295" y="265" width="95" height="55" rx="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-              <path d="M310 310 L330 295 L350 300 L370 275 L385 285" stroke={ORANGE} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <text x="318" y="318" fill="rgba(255,255,255,0.6)" fontSize="10" fontFamily="Poppins,sans-serif">Devis</text>
-              {/* Outils - marteau */}
-              <g transform="translate(75, 175)">
-                <rect x="0" y="0" width="25" height="8" rx="2" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-                <rect x="8" y="-8" width="8" height="20" rx="2" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-              </g>
-              {/* Crayon / règle */}
-              <rect x="355" y="200" width="40" height="6" rx="2" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" transform="rotate(-15 375 203)" />
-            </svg>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", position: "relative", borderRadius: 16, overflow: "hidden", maxWidth: 480 }}>
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=85" alt="Artisan au travail - rénovation" style={{ width: "100%", height: 320, objectFit: "cover", display: "block" }} />
+            <div style={{ position: "absolute", inset: 0, background: `linear-gradient(135deg, ${NAVY}88 0%, ${NAVY}cc 50%, transparent 100%)`, pointerEvents: "none" }} />
+            <div style={{ position: "absolute", bottom: 24, left: 24, right: 24, display: "flex", alignItems: "center", gap: 12, pointerEvents: "none" }}>
+              <div style={{ width: 56, height: 56, borderRadius: "50%", background: ORANGE, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={WHITE} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="10" /></svg>
+              </div>
+              <div>
+                <div style={{ color: WHITE, fontWeight: 700, fontSize: 18 }}>Devis travaux</div>
+                <div style={{ color: "rgba(255,255,255,0.9)", fontSize: 14 }}>Artisans qualifiés à votre service</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -188,12 +140,12 @@ export default function HomePage() {
             {/* Carte projet mise en avant - droite */}
             <div style={{ background: WHITE, border: "1px solid #e2e8f0", borderRadius: 20, overflow: "hidden", boxShadow: "0 8px 24px rgba(0,0,0,0.08)", display: "flex", flexDirection: "column" }}>
               <div style={{ width: "100%", height: 320, position: "relative", overflow: "hidden" }}>
-                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80" alt="Rénovation appartement" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/images/Photos_travaux.png" alt="Rénovation complète - EvalTravaux" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               <div style={{ padding: 32, flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <div>
-                  <h3 style={{ fontWeight: 600, fontSize: 22, margin: 0 }}>Rénovation appartement complet</h3>
-                  <p style={{ color: "#475569", marginTop: 12, fontSize: 17 }}>De 25 000 € à 40 000 €</p>
+                  <h3 style={{ fontWeight: 600, fontSize: 22, margin: 0 }}>Rénovation maison, appartement</h3>
+                  <p style={{ color: "#475569", marginTop: 12, fontSize: 17 }}>Devis personnalisé selon votre projet et la surface</p>
                 </div>
                 <Link href="/devis/renovation/paris" style={{ display: "inline-block", background: NAVY, color: WHITE, padding: "16px 32px", borderRadius: 12, fontWeight: 600, fontSize: 17, marginTop: 24, textDecoration: "none", alignSelf: "flex-start" }}>
                   Voir le projet

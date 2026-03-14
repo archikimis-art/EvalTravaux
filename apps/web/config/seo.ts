@@ -18,6 +18,8 @@ export const SEO_TRADES = [
   "terrassier",
   "paysagiste",
   "architecte",
+  "ravalement",
+  "ventilation",
 ] as const;
 
 export const SEO_CITIES = [
