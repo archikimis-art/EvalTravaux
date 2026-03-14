@@ -185,8 +185,8 @@ a { text-decoration: none; color: inherit; }
   border-color: rgba(255,140,0,0.3) !important;
 }
 
-/* Desktop Premium - responsive */
-@media (max-width: 1024px) {
+/* Desktop Premium - breakpoints élevés pour garder layout horizontal */
+@media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr !important; }
   .steps-grid { grid-template-columns: 1fr !important; }
   .needs-grid { grid-template-columns: 1fr !important; }
@@ -194,7 +194,7 @@ a { text-decoration: none; color: inherit; }
   .advantages-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .cta-final-grid { grid-template-columns: 1fr !important; }
 }
-@media (max-width: 640px) {
+@media (max-width: 600px) {
   .needs-services { grid-template-columns: 1fr !important; }
   .advantages-grid { grid-template-columns: 1fr !important; }
 }

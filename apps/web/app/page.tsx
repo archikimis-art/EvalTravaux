@@ -45,9 +45,10 @@ export default function HomePage() {
             <img src="/logo-dark.png" alt="EvalTravaux" style={{ height: 64, width: "auto", objectFit: "contain" }} />
           </Link>
           <nav style={{ display: "flex", alignItems: "center", gap: 24 }}>
+            <Link href="/devis-plombier-paris" style={{ color: "rgba(255,255,255,0.9)", padding: "10px 20px", borderRadius: 8, textDecoration: "none", fontSize: 16 }}>Obtenir mes devis gratuits</Link>
             <Link href="/login" style={{ color: "rgba(255,255,255,0.9)", padding: "10px 20px", borderRadius: 8, textDecoration: "none", fontSize: 16 }}>Connexion</Link>
-            <Link href="/devis-plombier-paris" style={{ background: ORANGE, color: WHITE, padding: "14px 32px", borderRadius: 8, fontWeight: 600, textDecoration: "none", fontSize: 16, boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>
-              Obtenir mes devis gratuits
+            <Link href="/register" style={{ background: ORANGE, color: WHITE, padding: "14px 32px", borderRadius: 8, fontWeight: 600, textDecoration: "none", fontSize: 16, boxShadow: "0 4px 14px rgba(255,140,0,0.4)" }}>
+              Inscription artisan
             </Link>
           </nav>
         </div>
