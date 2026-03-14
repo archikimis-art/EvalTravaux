@@ -35,11 +35,11 @@ footer {
   max-width: 100% !important;
   box-sizing: border-box;
 }
-/* Forcer les conteneurs internes à pleine largeur */
-header > div,
-section > div,
-footer > div {
-  max-width: none !important;
+/* Conteneur centré - contenu limité à 1200px, centré sur la page */
+.content-centered {
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   width: 100% !important;
 }
 /* Container principal - max 1440px mais largeur pleine jusqu'à ce seuil */

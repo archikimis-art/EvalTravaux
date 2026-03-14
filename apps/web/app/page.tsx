@@ -39,7 +39,7 @@ export default function HomePage() {
     <main className="layout-desktop-pc" style={{ width: "100%", maxWidth: "100%", minHeight: "100vh", background: WHITE, color: "#0f172a", fontFamily: "'Poppins', system-ui, sans-serif", overflowX: "hidden" }}>
       {/* Header - Logo gauche, CTA droite */}
       <header style={{ position: "fixed", top: 0, left: 0, right: 0, width: "100%", zIndex: 50, background: NAVY, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-        <div style={{ ...CONTAINER_STYLE, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 0" }}>
+        <div className="content-centered" style={{ ...CONTAINER_STYLE, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 0" }}>
           <Link href="/">
             <img src="/logo-dark.png" alt="EvalTravaux" style={{ height: 115, width: "auto", objectFit: "contain" }} />
           </Link>
@@ -59,7 +59,7 @@ export default function HomePage() {
 
       {/* Hero - Grid 2 colonnes, proportions référence */}
       <section style={{ width: "100%", background: NAVY, paddingTop: 180, paddingBottom: 100, overflow: "visible" }}>
-        <div className="hero-grid" style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center", minHeight: 380, overflow: "visible" }}>
+        <div className="content-centered hero-grid" style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center", minHeight: 380, overflow: "visible" }}>
           <div style={{ overflow: "visible", minWidth: 0 }}>
             <h1 style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)", fontWeight: 700, color: WHITE, margin: 0, lineHeight: 1.2, letterSpacing: "-0.02em", wordBreak: "break-word" }}>
               Comparez plusieurs devis travaux fiables en quelques minutes
@@ -95,7 +95,7 @@ export default function HomePage() {
 
       {/* Comment fonctionne - proportions équilibrées */}
       <section id="comment-ca-marche" style={{ width: "100%", background: "#f8fafc", padding: "80px 0" }}>
-        <div style={{ ...CONTAINER_STYLE, width: "100%" }}>
+        <div className="content-centered" style={{ ...CONTAINER_STYLE, width: "100%" }}>
           <h2 style={{ textAlign: "center", fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 700, color: "#0f172a", margin: 0 }}>
             Comment fonctionne EvalTravaux ?
           </h2>
@@ -116,7 +116,7 @@ export default function HomePage() {
 
       {/* Vos besoins - Layout référence : grille gauche (2x3) + carte projet droite */}
       <section style={{ width: "100%", background: WHITE, padding: "80px 0 100px" }}>
-        <div style={{ ...CONTAINER_STYLE, width: "100%" }}>
+        <div className="content-centered" style={{ ...CONTAINER_STYLE, width: "100%" }}>
           <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 700, margin: 0 }}>Vos besoins, notre expertise</h2>
           <p style={{ color: "#475569", marginTop: 12, fontSize: 17 }}>Choisissez le type de travaux.</p>
           <div className="needs-section-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, marginTop: 48, alignItems: "stretch" }}>
@@ -156,7 +156,7 @@ export default function HomePage() {
 
       {/* Pourquoi utiliser EvalTravaux */}
       <section style={{ width: "100%", padding: "80px 0" }}>
-        <div style={CONTAINER_STYLE}>
+        <div className="content-centered" style={CONTAINER_STYLE}>
           <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 700, margin: 0 }}>Pourquoi utiliser EvalTravaux ?</h2>
           <p style={{ color: "#475569", marginTop: 12, fontSize: 17 }}>Des avantages concrets pour simplifier vos projets.</p>
           <div className="advantages-cta-grid" style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: 48, marginTop: 48, alignItems: "stretch" }}>
@@ -199,7 +199,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer style={{ width: "100%", background: NAVY, color: WHITE, padding: "64px 0 32px" }}>
-        <div style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 56 }}>
+        <div className="content-centered" style={{ ...CONTAINER_STYLE, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 56 }}>
           <div>
             <h4 style={{ fontWeight: 600, margin: 0, fontSize: 18 }}>EvalTravaux</h4>
             <ul style={{ listStyle: "none", padding: 0, marginTop: 24 }}>
