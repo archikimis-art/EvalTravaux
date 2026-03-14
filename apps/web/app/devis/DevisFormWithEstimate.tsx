@@ -44,7 +44,7 @@ export function DevisFormWithEstimate({ tradeLabel, cityLabel, defaultCity }: Pr
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.message || "Erreur lors de l’estimation.");
+        throw new Error(data.message || "Erreur lors de l'estimation.");
       }
       const data: EstimateResult = await res.json();
       setEstimate(data);
@@ -78,14 +78,14 @@ export function DevisFormWithEstimate({ tradeLabel, cityLabel, defaultCity }: Pr
         });
         const data = await res.json().catch(() => ({}));
         if (!res.ok) {
-          throw new Error(data.message || "Erreur lors de l’enregistrement de votre demande.");
+          throw new Error(data.message || "Erreur lors de l'enregistrement de votre demande.");
         }
         setSubmitSuccess("Votre demande de devis a bien été enregistrée. Des artisans qualifiés pourront vous contacter.");
       } catch (e) {
         setSubmitError(
           e instanceof Error
             ? e.message
-            : "Erreur inattendue lors de l’envoi de la demande de devis.",
+            : "Erreur inattendue lors de l'envoi de la demande de devis.",
         );
       } finally {
         setSubmitting(false);
@@ -106,7 +106,7 @@ export function DevisFormWithEstimate({ tradeLabel, cityLabel, defaultCity }: Pr
         </label>
         <textarea
           className="w-full min-h-[110px] rounded-lg border border-slate-700/70 bg-slate-950/60 px-3 py-2 text-sm text-slate-50 outline-none ring-0 placeholder:text-slate-500 focus:border-emerald-400/70 focus:ring-2 focus:ring-emerald-500/60"
-          placeholder="Présentez en quelques lignes vos travaux, l’état actuel (avant) et le résultat souhaité (après)…"
+          placeholder="Présentez en quelques lignes vos travaux, l'état actuel (avant) et le résultat souhaité (après)…"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
@@ -200,8 +200,8 @@ export function DevisFormWithEstimate({ tradeLabel, cityLabel, defaultCity }: Pr
           8. Photos (bientôt disponible)
         </label>
         <p className="text-[11px] text-slate-400">
-          Zone d’upload à connecter plus tard (JPG, PNG, PDF). Les photos aident à affiner
-          l’estimation.
+          Zone d'upload à connecter plus tard (JPG, PNG, PDF). Les photos aident à affiner
+          l'estimation.
         </p>
       </div>
       <div className="space-y-2">

@@ -233,9 +233,11 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* FULL DESKTOP - Grilles horizontales maintenues jusqu'à 768px */
+@media (max-width: 1024px) {
+  .needs-services { grid-template-columns: repeat(2, 1fr) !important; }
+}
 @media (max-width: 768px) {
   .hero-grid { grid-template-columns: 1fr !important; }
-  .steps-needs-combined { grid-template-columns: 1fr !important; }
   .steps-grid { grid-template-columns: 1fr !important; }
   .needs-services { grid-template-columns: repeat(2, 1fr) !important; }
   .advantages-cta-grid { grid-template-columns: 1fr !important; }

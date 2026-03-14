@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getDevisSlugs } from "../../config/seo";
-import { DevisFormWithEstimate } from "./DevisFormWithEstimate";
+import { getDevisSlugs } from "../../../../config/seo";
+import { DevisFormWithEstimate } from "../../DevisFormWithEstimate";
 
 type Params = {
-  params: { "metier-ville"?: string; metier?: string; ville?: string };
+  params: Promise<{ metier: string; ville: string }>;
 };
 
 /** ISR : revalider les pages devis toutes les heures */
@@ -14,30 +14,24 @@ export const revalidate = 3600;
 
 /** Génération statique des pages devis (métiers × villes) pour le SEO. */
 export function generateStaticParams() {
-  return getDevisSlugs();
+  return getDevisSlugs().map((s) => {
+    const parts = s["metier-ville"].split("-");
+    const metier = parts[0] ?? "";
+    const ville = parts.slice(1).join("-") || "";
+    return { metier, ville };
+  });
 }
 
-function decodeSlug(slug: string | undefined): { trade: string; city: string } | null {
-  const s = slug != null && typeof slug === "string" ? slug : "";
-  if (!s) return null;
-  const parts = s.split("-");
-  if (parts.length < 2) return null;
-  const trade = parts[0];
-  const city = parts.slice(1).join("-");
-  return { trade, city };
+function decodeSlug(metier: string, ville: string): { trade: string; city: string } | null {
+  const t = metier?.trim() || "";
+  const v = ville?.trim() || "";
+  if (!t || !v) return null;
+  return { trade: t, city: v.replace(/-/g, " ") };
 }
 
-function getSlugFromParams(params: Params["params"] | undefined): string | undefined {
-  if (!params) return undefined;
-  const combined = params["metier-ville"];
-  if (combined && typeof combined === "string") return combined;
-  if (params.metier && params.ville) return `${params.metier}-${params.ville}`;
-  return undefined;
-}
-
-export function generateMetadata({ params }: Params): Metadata {
-  const slug = getSlugFromParams(params ?? undefined);
-  const decoded = decodeSlug(slug);
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { metier, ville } = await params;
+  const decoded = decodeSlug(metier, ville);
   if (!decoded) {
     return {
       title: "Demande de devis travaux – EvalTravaux",
@@ -54,13 +48,13 @@ export function generateMetadata({ params }: Params): Metadata {
   };
 }
 
-export default function SeoDevisPage({ params }: Params) {
-  const slug = getSlugFromParams(params ?? undefined);
-  const decoded = decodeSlug(slug);
+export default async function SeoDevisPage({ params }: Params) {
+  const { metier, ville } = await params;
+  const decoded = decodeSlug(metier, ville);
   if (!decoded) return notFound();
 
   const trade = decoded.trade.toLowerCase();
-  const city = decoded.city.toLowerCase();
+  const city = decoded.city.toLowerCase().replace(/\s/g, "-");
 
   const tradeLabel = trade.charAt(0).toUpperCase() + trade.slice(1);
   const cityLabel = decoded.city.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
@@ -76,8 +70,8 @@ export default function SeoDevisPage({ params }: Params) {
             Devis {tradeLabel} à {cityLabel}
           </h1>
           <p className="text-sm text-slate-600">
-            Décrivez vos travaux, obtenez une estimation indicative grâce à l’IA et recevez des devis
-            d’artisans {tradeLabel.toLowerCase()} qualifiés à {cityLabel}.
+            Décrivez vos travaux, obtenez une estimation indicative grâce à l&apos;IA et recevez des devis
+            d&apos;artisans {tradeLabel.toLowerCase()} qualifiés à {cityLabel}.
           </p>
         </header>
 
@@ -94,8 +88,8 @@ export default function SeoDevisPage({ params }: Params) {
                 devis en toute simplicité.
               </p>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Après votre demande, votre projet est transmis à un petit nombre d’artisans {tradeLabel.toLowerCase()}{" "}
-                pertinents à {cityLabel}, en fonction de leur zone d’intervention et de leur historique
+                Après votre demande, votre projet est transmis à un petit nombre d&apos;artisans {tradeLabel.toLowerCase()}{" "}
+                pertinents à {cityLabel}, en fonction de leur zone d&apos;intervention et de leur historique
                 de qualité. Vous discutez ensuite directement avec eux pour affiner le devis.
               </p>
             </article>
@@ -103,8 +97,8 @@ export default function SeoDevisPage({ params }: Params) {
             <article className="space-y-2">
               <h3 className="text-sm font-semibold">Prix moyens constatés</h3>
               <p className="text-xs text-slate-600">
-                Les montants ci-dessous sont indicatifs et peuvent varier selon l’état du bien, les
-                matériaux choisis et l’accessibilité du chantier à {cityLabel}.
+                Les montants ci-dessous sont indicatifs et peuvent varier selon l&apos;état du bien, les
+                matériaux choisis et l&apos;accessibilité du chantier à {cityLabel}.
               </p>
               <ul className="mt-2 space-y-1 text-sm text-slate-700">
                 <li>• Petits travaux de {tradeLabel.toLowerCase()} : 150 € – 800 €</li>
@@ -116,9 +110,9 @@ export default function SeoDevisPage({ params }: Params) {
             <article className="space-y-3">
               <h3 className="text-sm font-semibold">Conseils pour votre projet</h3>
               <ul className="list-disc pl-5 text-sm text-slate-700 space-y-1">
-                <li>Précisez la surface, l’état existant et le niveau de finition souhaité.</li>
+                <li>Précisez la surface, l&apos;état existant et le niveau de finition souhaité.</li>
                 <li>Joignez des photos claires des pièces ou de la façade.</li>
-                <li>Indiquez vos contraintes de délais ou d’occupation des lieux.</li>
+                <li>Indiquez vos contraintes de délais ou d&apos;occupation des lieux.</li>
                 <li>Indiquez si le bien se situe dans le centre de {cityLabel} ou en périphérie.</li>
               </ul>
             </article>
@@ -139,7 +133,7 @@ export default function SeoDevisPage({ params }: Params) {
               <p className="text-xs text-slate-600">
                 EvalTravaux sélectionne des artisans {tradeLabel.toLowerCase()} à {cityLabel} en
                 vérifiant leurs documents réglementaires (assurance, Kbis, RGE le cas échéant) et leurs
-                avis clients. Vous recevez uniquement des devis d’entreprises réellement actives dans
+                avis clients. Vous recevez uniquement des devis d&apos;entreprises réellement actives dans
                 votre zone.
               </p>
             </section>
@@ -180,4 +174,3 @@ export default function SeoDevisPage({ params }: Params) {
     </main>
   );
 }
-
