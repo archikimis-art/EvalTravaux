@@ -27,10 +27,20 @@ body {
 }
 .layout-desktop-pc,
 #__next,
-main {
+main,
+header,
+section,
+footer {
   width: 100% !important;
   max-width: 100% !important;
-  min-width: 100% !important;
+  box-sizing: border-box;
+}
+/* Forcer les conteneurs internes à pleine largeur */
+header > div,
+section > div,
+footer > div {
+  max-width: none !important;
+  width: 100% !important;
 }
 /* Container principal - max 1440px mais largeur pleine jusqu'à ce seuil */
 .page-container {

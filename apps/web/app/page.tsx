@@ -3,11 +3,11 @@ import Link from "next/link";
 const NAVY = "#0f2b46";
 const ORANGE = "#ff8c00";
 const WHITE = "#ffffff";
-const PX = 48; // Padding latéral réduit pour maximiser la largeur utile
+const PX = 48;
 const CONTAINER_STYLE = {
   width: "100%",
-  maxWidth: "min(1440px, 100%)",
-  margin: "0 auto",
+  maxWidth: "none",
+  margin: 0,
   paddingLeft: PX,
   paddingRight: PX,
 };
